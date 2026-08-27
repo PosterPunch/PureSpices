@@ -69,6 +69,22 @@
       overflow: hidden;
     }
 
+    /* ----- brand pattern background (pattern.png) - 50% smaller ----- */
+    .pattern-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.10;
+      background-image: url('pattern.png');
+      background-size: 25% auto;
+      background-position: center;
+      background-repeat: repeat;
+    }
+
     /* ----- decorative background (abstract Bengali linework) ----- */
     .bg-ornament {
       position: absolute;
@@ -77,7 +93,7 @@
       width: 70%;
       height: 70%;
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
       opacity: 0.06;
       color: var(--forest);
       transform: rotate(2deg) scale(1);
@@ -96,7 +112,7 @@
       width: 28%;
       max-width: 260px;
       opacity: 0.07;
-      z-index: 0;
+      z-index: 1;
       color: var(--forest);
       pointer-events: none;
     }
@@ -420,6 +436,7 @@
       .motif-below { display: none; }
       .status-wrap { gap: 8px; }
       .status-label { font-size: clamp(9px, 2vw, 12px); }
+      .pattern-bg { opacity: 0.08; background-size: 30% auto; }
     }
 
     @media (max-width: 430px) {
@@ -429,18 +446,21 @@
       .sub { font-size: 0.9rem; }
       .form-wrap input { padding: 12px 14px; font-size: 0.9rem; }
       .form-wrap button { padding: 12px 14px; font-size: 0.8rem; }
+      .pattern-bg { opacity: 0.07; background-size: 35% auto; }
     }
 
     @media (max-width: 375px) {
       .headline { font-size: clamp(1.9rem, 10vw, 2.8rem); }
       .logo-img { width: 100px; }
       .status-label { font-size: 8px; letter-spacing: 0.18em; }
+      .pattern-bg { background-size: 40% auto; }
     }
 
     @media (min-height: 900px) and (min-width: 1200px) {
       .page { padding: 64px 80px 48px 80px; }
       .content { gap: 24px; }
       .headline { font-size: clamp(5rem, 6.5vw, 6.8rem); }
+      .pattern-bg { background-size: 20% auto; }
     }
 
     @media (max-height: 700px) {
@@ -472,6 +492,9 @@
 </head>
 <body>
   <div class="page">
+
+    <!-- BRAND PATTERN BACKGROUND (pattern.png) - 50% smaller -->
+    <div class="pattern-bg" aria-hidden="true"></div>
 
     <!-- BACKGROUND ORNAMENT (abstract Bengali linework) -->
     <div class="bg-ornament" aria-hidden="true">
