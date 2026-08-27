@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>PURE SPICES · coming soon</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ----- reset & base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ivory: #F5F1E8;
+      --cream: #EDE7DA;
+      --forest: #173B2C;
+      --forest-muted: #28513F;
+      --terracotta: #A94E35;
+      --charcoal: #171815;
+      --grey: #77736B;
+      --border-subtle: rgba(23, 59, 44, 0.18);
+      --font-serif: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Manrope', 'Inter', 'Helvetica Neue', sans-serif;
+      /* scale factor: 1.25x */
+      --scale: 1.25;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: var(--ivory);
+      color: var(--charcoal);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100svh;
+      min-height: 100dvh;
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    /* ----- main container ----- */
+    .page {
+      position: relative;
+      width: 100%;
+      max-width: 1280px;
+      min-height: 100svh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(24px, 5vh, 56px) clamp(20px, 5vw, 80px) clamp(20px, 3.5vh, 40px) clamp(20px, 5vw, 80px);
+      margin: 0 auto;
+      background-color: var(--ivory);
+      overflow: hidden;
+    }
+
+    /* ----- decorative background (abstract Bengali linework) ----- */
+    .bg-ornament {
+      position: absolute;
+      top: -10%;
+      right: -8%;
+      width: 70%;
+      height: 70%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.06;
+      color: var(--forest);
+      transform: rotate(2deg) scale(1);
+      transition: transform 0.2s ease;
+    }
+    .bg-ornament svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .motif-below {
+      position: absolute;
+      bottom: 12%;
+      left: 4%;
+      width: 28%;
+      max-width: 260px;
+      opacity: 0.07;
+      z-index: 0;
+      color: var(--forest);
+      pointer-events: none;
+    }
+    .motif-below svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ----- content layer ----- */
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1 0 auto;
+      padding: clamp(10px, 2.5vh, 30px) 0;
+      text-align: center;
+      gap: clamp(10px, 2.2vh, 30px);
+      width: 100%;
+    }
+
+    /* ----- LOGO (attached PNG) ----- */
+    .logo-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: clamp(6px, 1.2vh, 16px);
+      opacity: 0;
+      transform: translateY(-8px);
+      animation: logoFade 1.0s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+    }
+    .logo-img {
+      width: clamp(150px, 18vw, 240px);
+      height: auto;
+      max-width: 100%;
+      display: block;
+      filter: brightness(0) saturate(100%) invert(22%) sepia(18%) saturate(1320%) hue-rotate(100deg) brightness(94%) contrast(92%);
+      /* converts to #173B2C while preserving shape */
+    }
+
+    /* ----- STATUS LABEL ----- */
+    .status-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(10px, 1.5vw, 22px);
+      margin-bottom: clamp(4px, 0.8vh, 12px);
+      opacity: 0;
+      transform: translateY(6px);
+      animation: fadeUp 0.9s ease 0.15s forwards;
+    }
+    .status-line {
+      width: clamp(26px, 3.5vw, 48px);
+      height: 1px;
+      background: var(--terracotta);
+      opacity: 0.5;
+    }
+    .status-label {
+      font-family: var(--font-sans);
+      font-size: clamp(11px, 1vw, 15px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 500;
+      background: transparent;
+      padding: 0 2px;
+      white-space: nowrap;
+    }
+
+    /* ----- HEADLINE ----- */
+    .headline {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      color: var(--forest);
+      max-width: min(100%, 900px);
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+    }
+    .headline span {
+      display: inline-block;
+    }
+    .headline .line-break {
+      display: block;
+    }
+
+    /* ----- DESCRIPTION ----- */
+    .sub {
+      font-family: var(--font-sans);
+      font-weight: 350;
+      font-size: clamp(1.05rem, 1.5vw, 1.4rem);
+      line-height: 1.6;
+      color: var(--grey);
+      max-width: min(100%, 560px);
+      margin: 0 auto;
+      padding: 0 8px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 1.0s ease 0.4s forwards;
+      letter-spacing: 0.01em;
+    }
+    .sub br {
+      display: none;
+    }
+    @media (min-width: 500px) {
+      .sub br {
+        display: inline;
+      }
+    }
+
+    /* ----- NOTIFICATION FORM ----- */
+    .form-wrap {
+      width: 100%;
+      max-width: 600px;
+      margin: clamp(6px, 1.5vh, 22px) auto 0 auto;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.95s ease 0.55s forwards;
+    }
+    .form-wrap form {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+    }
+    .form-wrap input {
+      flex: 1 1 220px;
+      min-width: 180px;
+      background: transparent;
+      border: 1px solid rgba(23, 59, 44, 0.25);
+      padding: 14px 20px;
+      font-family: var(--font-sans);
+      font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+      color: var(--charcoal);
+      border-radius: 2px;
+      outline: none;
+      transition: border 0.2s, background 0.2s;
+      letter-spacing: 0.02em;
+      background-color: rgba(237, 231, 218, 0.3);
+    }
+    .form-wrap input::placeholder {
+      color: var(--grey);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      opacity: 0.7;
+    }
+    .form-wrap input:focus {
+      border-color: var(--forest);
+      background-color: rgba(237, 231, 218, 0.5);
+    }
+    .form-wrap button {
+      flex: 0 0 auto;
+      background: var(--forest);
+      border: none;
+      padding: 14px 38px;
+      font-family: var(--font-sans);
+      font-size: clamp(0.85rem, 1vw, 1rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ivory);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.1s, opacity 0.2s;
+      font-weight: 500;
+      white-space: nowrap;
+      min-width: 150px;
+    }
+    .form-wrap button:hover {
+      background: var(--forest-muted);
+    }
+    .form-wrap button:active {
+      transform: scale(0.97);
+    }
+    .form-wrap button:disabled {
+      opacity: 0.7;
+      cursor: default;
+      transform: none;
+    }
+
+    .form-feedback {
+      margin-top: 12px;
+      font-family: var(--font-sans);
+      font-size: clamp(0.9rem, 1vw, 1.1rem);
+      color: var(--forest);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      min-height: 1.6em;
+      transition: opacity 0.3s;
+    }
+
+    /* ----- BOTTOM AREA ----- */
+    .bottom {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding-top: clamp(10px, 2vh, 22px);
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.7s forwards;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border-subtle);
+      margin-bottom: clamp(12px, 1.8vh, 24px);
+    }
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-sans);
+      font-size: clamp(0.7rem, 0.8vw, 0.9rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grey);
+      font-weight: 400;
+      gap: 8px 16px;
+      width: 100%;
+    }
+    .info-row .left,
+    .info-row .center,
+    .info-row .right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .info-row .right a {
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.25s ease;
+      position: relative;
+      padding-bottom: 1px;
+      border-bottom: 1px solid transparent;
+    }
+    .info-row .right a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--forest);
+      transition: width 0.25s ease;
+    }
+    .info-row .right a:hover {
+      color: var(--forest);
+    }
+    .info-row .right a:hover::after {
+      width: 100%;
+    }
+    .info-row .right span {
+      margin: 0 2px;
+      color: var(--border-subtle);
+    }
+
+    /* ----- animations ----- */
+    @keyframes logoFade {
+      0% { opacity: 0; transform: translateY(-8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(18px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .bg-ornament {
+      animation: floatOrnament 30s ease-in-out infinite alternate;
+    }
+    @keyframes floatOrnament {
+      0% { transform: scale(1) rotate(0deg) translateX(0); }
+      100% { transform: scale(1.02) rotate(1.2deg) translateX(12px); }
+    }
+
+    /* ----- reduced motion ----- */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .bg-ornament {
+        animation: none;
+        transform: scale(1) rotate(0deg);
+      }
+      .logo-wrapper,
+      .status-wrap,
+      .headline,
+      .sub,
+      .form-wrap,
+      .bottom {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+    }
+
+    /* ----- responsive fine-tune ----- */
+    @media (max-width: 768px) {
+      body { padding: 0 12px; }
+      .page { padding: 24px 16px 18px 16px; min-height: 100svh; }
+      .content { gap: 8px; padding: 6px 0; }
+      .headline { font-size: clamp(2.6rem, 10vw, 4.2rem); }
+      .sub { font-size: clamp(0.95rem, 2.5vw, 1.15rem); max-width: 400px; }
+      .form-wrap { max-width: 100%; }
+      .form-wrap form { flex-direction: column; align-items: stretch; gap: 10px; }
+      .form-wrap input { flex: 1 1 auto; width: 100%; min-width: 0; padding: 14px 16px; }
+      .form-wrap button { width: 100%; min-width: 0; padding: 14px 16px; }
+      .info-row { flex-direction: column; align-items: center; gap: 6px; font-size: clamp(0.6rem, 1.8vw, 0.8rem); }
+      .info-row .left, .info-row .center, .info-row .right { width: 100%; justify-content: center; }
+      .bg-ornament { opacity: 0.04; right: -20%; width: 100%; }
+      .motif-below { display: none; }
+      .status-wrap { gap: 8px; }
+      .status-label { font-size: clamp(9px, 2vw, 12px); }
+    }
+
+    @media (max-width: 430px) {
+      .page { padding: 18px 12px 14px 12px; }
+      .headline { font-size: clamp(2.2rem, 11vw, 3.4rem); }
+      .logo-img { width: clamp(110px, 35vw, 160px); }
+      .sub { font-size: 0.9rem; }
+      .form-wrap input { padding: 12px 14px; font-size: 0.9rem; }
+      .form-wrap button { padding: 12px 14px; font-size: 0.8rem; }
+    }
+
+    @media (max-width: 375px) {
+      .headline { font-size: clamp(1.9rem, 10vw, 2.8rem); }
+      .logo-img { width: 100px; }
+      .status-label { font-size: 8px; letter-spacing: 0.18em; }
+    }
+
+    @media (min-height: 900px) and (min-width: 1200px) {
+      .page { padding: 64px 80px 48px 80px; }
+      .content { gap: 24px; }
+      .headline { font-size: clamp(5rem, 6.5vw, 6.8rem); }
+    }
+
+    @media (max-height: 700px) {
+      .content { gap: 6px; padding: 0; }
+      .logo-wrapper { margin-bottom: 4px; }
+      .status-wrap { margin-bottom: 2px; }
+      .headline { font-size: clamp(2.2rem, 5.5vh, 4.2rem); }
+      .sub { font-size: clamp(0.8rem, 1.8vh, 1rem); }
+      .form-wrap { margin-top: 6px; }
+      .bottom { padding-top: 8px; }
+      .divider { margin-bottom: 10px; }
+    }
+
+    @media (max-height: 600px) {
+      .logo-img { width: clamp(90px, 14vh, 130px); }
+      .headline { font-size: clamp(1.8rem, 5vh, 3.2rem); }
+      .sub { font-size: 0.8rem; }
+      .form-wrap input { padding: 8px 14px; font-size: 0.8rem; }
+      .form-wrap button { padding: 8px 18px; font-size: 0.7rem; min-width: 100px; }
+    }
+
+    /* ensure no overflow */
+    img, svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- BACKGROUND ORNAMENT (abstract Bengali linework) -->
+    <div class="bg-ornament" aria-hidden="true">
+      <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M300 50 C 150 50, 50 150, 50 300 C 50 450, 150 550, 300 550 C 450 550, 550 450, 550 300 C 550 150, 450 50, 300 50Z" stroke="#173B2C" stroke-width="1.2" fill="none" opacity="0.5"/>
+        <path d="M300 100 C 180 100, 100 180, 100 300 C 100 420, 180 500, 300 500 C 420 500, 500 420, 500 300 C 500 180, 420 100, 300 100Z" stroke="#173B2C" stroke-width="1" fill="none" opacity="0.3"/>
+        <path d="M300 170 C 230 170, 170 230, 170 300 C 170 370, 230 430, 300 430 C 370 430, 430 370, 430 300 C 430 230, 370 170, 300 170Z" stroke="#173B2C" stroke-width="0.8" fill="none" opacity="0.3"/>
+        <path d="M180 150 L420 450 M150 300 L450 300 M300 150 L300 450" stroke="#173B2C" stroke-width="0.6" fill="none" opacity="0.15"/>
+        <circle cx="300" cy="300" r="90" stroke="#173B2C" stroke-width="0.5" fill="none" opacity="0.2"/>
+        <circle cx="300" cy="300" r="40" stroke="#173B2C" stroke-width="0.4" fill="none" opacity="0.2"/>
+      </svg>
+    </div>
+
+    <!-- small alpana motif -->
+    <div class="motif-below" aria-hidden="true">
+      <svg viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 40 Q 60 10, 100 40 Q 140 70, 180 40" stroke="#173B2C" stroke-width="0.8" fill="none" opacity="0.6"/>
+        <path d="M40 48 Q 80 22, 120 48 Q 160 74, 190 48" stroke="#173B2C" stroke-width="0.5" fill="none" opacity="0.4"/>
+        <circle cx="100" cy="40" r="6" stroke="#173B2C" stroke-width="0.5" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+      <!-- LOGO: attached purespiceslogo.png -->
+      <div class="logo-wrapper">
+        <img class="logo-img" src="purespiceslogo.png" alt="PURE SPICES logo" width="190" height="auto">
+      </div>
+
+      <!-- STATUS LABEL -->
+      <div class="status-wrap">
+        <span class="status-line"></span>
+        <span class="status-label">Website under construction</span>
+        <span class="status-line"></span>
+      </div>
+
+      <!-- HEADLINE -->
+      <h1 class="headline">
+        <span>WE’RE COOKING</span>
+        <span class="line-break">SOMETHING SPECIAL.</span>
+      </h1>
+
+      <!-- DESCRIPTION -->
+      <p class="sub">
+        “Our new home on the web is being prepared.<br>Pure Bengali flavours, made with care, are coming soon.”
+      </p>
+
+      <!-- NOTIFICATION FORM (Formspree) -->
+      <div class="form-wrap">
+        <form id="notifyForm" method="POST" action="https://formspree.io/f/mbgjrvll">
+          <input type="text" name="contact" placeholder="Email or phone number" aria-label="Email or phone number for notification" required>
+          <button type="submit" id="formBtn">NOTIFY ME</button>
+        </form>
+        <div class="form-feedback" id="formFeedback"></div>
+      </div>
+    </div>
+
+    <!-- BOTTOM INFO -->
+    <div class="bottom">
+      <div class="divider"></div>
+      <div class="info-row">
+        <span class="left">FROM SHAILKUPA, BANGLADESH</span>
+        <span class="center">MADE WITH PURE INGREDIENTS</span>
+        <span class="right">
+          <a href="https://facebook.com/purespicesshop" target="_blank" aria-label="Facebook">Facebook</a>
+          <span>·</span>
+          <a href="https://instagram.com/purespicesshop" target="_blank" aria-label="Instagram">Instagram</a>
+          <span>·</span>
+          <a href="https://wa.me/8801912136746" target="_blank" aria-label="WhatsApp">WhatsApp</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const form = document.getElementById('notifyForm');
+      const btn = document.getElementById('formBtn');
+      const feedback = document.getElementById('formFeedback');
+      let isSubmitting = false;
+
+      if (form && btn && feedback) {
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+
+          // validation
+          const input = form.querySelector('input[name="contact"]');
+          const val = input.value.trim();
+          if (!val) {
+            feedback.textContent = 'Please enter an email or phone number.';
+            feedback.style.color = 'var(--terracotta)';
+            return;
+          }
+          if (isSubmitting) return;
+          isSubmitting = true;
+          const originalText = btn.textContent;
+          btn.textContent = 'SUBMITTING…';
+          btn.disabled = true;
+          feedback.textContent = '';
+          feedback.style.color = 'var(--forest)';
+
+          try {
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+              feedback.textContent = '✨ THANK YOU — WE’LL BE IN TOUCH.';
+              feedback.style.color = 'var(--forest)';
+              btn.textContent = '✓ THANK YOU';
+              btn.style.background = 'var(--forest-muted)';
+              form.querySelector('input[name="contact"]').value = '';
+              // reset after 5s
+              setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.disabled = false;
+                isSubmitting = false;
+                feedback.textContent = '';
+              }, 5000);
+            } else {
+              const errData = await response.json();
+              feedback.textContent = '⚠️ Something went wrong. Please try again.';
+              feedback.style.color = 'var(--terracotta)';
+              btn.textContent = originalText;
+              btn.disabled = false;
+              isSubmitting = false;
+            }
+          } catch (err) {
+            feedback.textContent = '⚠️ Network error. Please check your connection.';
+            feedback.style.color = 'var(--terracotta)';
+            btn.textContent = originalText;
+            btn.disabled = false;
+            isSubmitting = false;
+          }
+        });
+
+        // reset on input
+        form.querySelector('input[name="contact"]').addEventListener('input', function() {
+          if (feedback.textContent && !feedback.textContent.includes('THANK YOU')) {
+            feedback.textContent = '';
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
