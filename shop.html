@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Shop — Pure Spices</title>
+  <meta name="description" content="Shop Pure Spices — authentic Bengali spices, traditional foods, gur, achar and more. Made in Shailkupa, Bangladesh.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== GLOBAL DESIGN SYSTEM ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ivory: #F5F1E8;
+      --cream: #EDE7DA;
+      --forest: #173B2C;
+      --forest-muted: #28513F;
+      --terracotta: #A94E35;
+      --charcoal: #171815;
+      --grey: #77736B;
+      --border-subtle: rgba(23, 59, 44, 0.18);
+      --font-serif: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Manrope', 'Inter', 'Helvetica Neue', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--charcoal);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: var(--font-sans);
+      border: none;
+      background: none;
+    }
+
+    .container {
+      width: min(100% - 2rem, 1280px);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* ===== ANNOUNCEMENT BAR ===== */
+    .announcement {
+      background: var(--forest);
+      color: var(--ivory);
+      text-align: center;
+      padding: 8px 16px;
+      font-size: clamp(9px, 0.65vw, 12px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-family: var(--font-sans);
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--ivory);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .header.scrolled {
+      background: rgba(245, 241, 232, 0.95);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      padding: 0 16px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .header-logo a {
+      display: flex;
+      align-items: center;
+    }
+    .header-logo img {
+      height: clamp(40px, 4.8vw, 68px);
+      width: auto;
+      display: block;
+      filter: brightness(0) saturate(100%) invert(22%) sepia(18%) saturate(1320%) hue-rotate(100deg) brightness(94%) contrast(92%);
+    }
+    .header-nav {
+      display: none;
+    }
+    .header-nav a {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      color: var(--charcoal);
+      padding: 0 18px;
+      transition: color 0.2s;
+      text-transform: uppercase;
+    }
+    .header-nav a:hover {
+      color: var(--forest);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .header-actions button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--charcoal);
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      position: relative;
+    }
+    .header-actions button:hover {
+      color: var(--forest);
+    }
+    .header-actions a {
+      display: flex;
+      align-items: center;
+      color: var(--charcoal);
+      transition: color 0.2s;
+    }
+    .header-actions a:hover {
+      color: var(--forest);
+    }
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -6px;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 600;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--charcoal);
+      transition: 0.3s;
+    }
+
+    @media (min-width: 769px) {
+      .header-nav {
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+      .hamburger {
+        display: none;
+      }
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 360px;
+      height: 100vh;
+      background: var(--forest);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      padding: 80px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow-y: auto;
+    }
+    .mobile-menu.open {
+      right: 0;
+    }
+    .mobile-menu a {
+      color: var(--ivory);
+      font-size: 17px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(245, 241, 232, 0.08);
+      transition: opacity 0.2s;
+    }
+    .mobile-menu a:hover {
+      opacity: 0.7;
+    }
+    .mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--ivory);
+      font-size: 28px;
+    }
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ===== SEARCH OVERLAY ===== */
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(245, 241, 232, 0.97);
+      z-index: 1500;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 80px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .search-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .search-box {
+      width: min(90%, 600px);
+    }
+    .search-box input {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 20px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--forest);
+      outline: none;
+      font-family: var(--font-serif);
+      color: var(--charcoal);
+    }
+    .search-box input::placeholder {
+      color: var(--grey);
+      opacity: 0.6;
+    }
+    .search-results {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .search-results .result-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-results .result-item:hover {
+      background: var(--cream);
+    }
+    .search-close {
+      position: absolute;
+      top: 28px;
+      right: 32px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: var(--charcoal);
+    }
+
+    /* ===== CART DRAWER ===== */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: min(100%, 420px);
+      height: 100vh;
+      background: var(--ivory);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      padding: 24px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.05);
+    }
+    .cart-drawer.open {
+      right: 0;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 18px;
+      font-weight: 500;
+      font-family: var(--font-serif);
+    }
+    .cart-close {
+      font-size: 24px;
+      background: none;
+      border: none;
+    }
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(23, 59, 44, 0.06);
+    }
+    .cart-item img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 2px;
+      background: var(--cream);
+    }
+    .cart-item-info {
+      flex: 1;
+    }
+    .cart-item-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .cart-item-price {
+      font-size: 13px;
+      color: var(--grey);
+    }
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .cart-item-qty button {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      background: transparent;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    .cart-item-qty button:hover {
+      background: var(--forest);
+      color: var(--ivory);
+      border-color: var(--forest);
+    }
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--grey);
+      font-size: 18px;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .cart-item-remove:hover {
+      color: var(--terracotta);
+    }
+    .cart-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 16px;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .cart-checkout {
+      width: 100%;
+      padding: 14px;
+      background: var(--forest);
+      color: var(--ivory);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+      display: block;
+      text-align: center;
+    }
+    .cart-checkout:hover {
+      background: var(--forest-muted);
+    }
+    .cart-empty {
+      text-align: center;
+      color: var(--grey);
+      padding: 40px 0;
+      font-size: 15px;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary {
+      background: var(--forest);
+      color: var(--ivory);
+      padding: 14px 36px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      transition: background 0.25s, transform 0.1s;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn-primary:hover {
+      background: var(--forest-muted);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--forest);
+      padding: 14px 36px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      transition: background 0.25s, border-color 0.25s;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn-secondary:hover {
+      background: var(--cream);
+      border-color: var(--forest);
+    }
+    .btn-order {
+      background: var(--forest);
+      color: var(--ivory);
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      transition: background 0.25s;
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+    .btn-order:hover {
+      background: var(--forest-muted);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--forest);
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      transition: background 0.25s, border-color 0.25s;
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+    .btn-outline:hover {
+      background: var(--cream);
+      border-color: var(--forest);
+    }
+
+    /* ===== PATTERN BACKGROUND ===== */
+    .pattern-bg {
+      position: relative;
+    }
+    .pattern-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/pattern.png');
+      background-size: 30% auto;
+      background-repeat: repeat;
+      background-position: center;
+      opacity: 0.10;
+      pointer-events: none;
+    }
+    .pattern-bg .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== SHOP PAGE SPECIFIC ===== */
+    /* Hero */
+    .shop-hero {
+      text-align: center;
+      padding: 40px 0 12px;
+    }
+    .shop-hero .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    .shop-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      font-weight: 500;
+      color: var(--forest);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .shop-hero p {
+      font-size: clamp(1rem, 1.1vw, 1.2rem);
+      color: var(--grey);
+      max-width: 600px;
+      margin: 0 auto 0px;
+      line-height: 1.7;
+    }
+
+    /* Shop Controls */
+    .shop-controls {
+      position: sticky;
+      top: 72px;
+      z-index: 50;
+      background: var(--ivory);
+      padding: 12px 0 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(8px);
+      background: rgba(245, 241, 232, 0.92);
+    }
+    .controls-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 16px;
+    }
+    .controls-inner .search-wrap {
+      flex: 1 1 200px;
+      min-width: 130px;
+      position: relative;
+    }
+    .controls-inner .search-wrap input {
+      width: 100%;
+      padding: 10px 16px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--charcoal);
+      outline: none;
+      transition: border 0.2s;
+    }
+    .controls-inner .search-wrap input:focus {
+      border-color: var(--forest);
+    }
+    .controls-inner .search-wrap input::placeholder {
+      color: var(--grey);
+      opacity: 0.6;
+    }
+    .controls-inner .filter-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      flex: 1 1 auto;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .controls-inner .filter-wrap .filter-btn {
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--grey);
+      border: 1px solid transparent;
+      border-radius: 2px;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      white-space: nowrap;
+      background: transparent;
+    }
+    .controls-inner .filter-wrap .filter-btn:hover {
+      color: var(--forest);
+    }
+    .controls-inner .filter-wrap .filter-btn.active {
+      color: var(--forest);
+      border-color: var(--forest);
+      background: rgba(23, 59, 44, 0.04);
+    }
+    .controls-inner .sort-wrap select {
+      padding: 8px 12px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--charcoal);
+      outline: none;
+      cursor: pointer;
+      min-width: 110px;
+    }
+    .controls-inner .sort-wrap select:focus {
+      border-color: var(--forest);
+    }
+
+    /* Product Grid */
+    .product-grid-wrap {
+      padding: 30px 0 50px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    /* Product Card */
+    .product-card {
+      background: var(--ivory);
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: transform 0.4s, box-shadow 0.3s, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(23, 59, 44, 0.06);
+      border-color: rgba(23, 59, 44, 0.25);
+    }
+    .product-card .card-image {
+      aspect-ratio: 1/1;
+      background: var(--cream);
+      overflow: hidden;
+      position: relative;
+    }
+    .product-card .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .product-card:hover .card-image img {
+      transform: scale(1.03);
+    }
+    .product-card .card-image .category-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--forest);
+      color: var(--ivory);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .product-card .card-info {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .product-card .card-info .product-name {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--forest);
+      margin-bottom: 2px;
+    }
+    .product-card .card-info .product-name-en {
+      font-size: 0.8rem;
+      color: var(--grey);
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+    .product-card .card-info .product-desc {
+      font-size: 0.85rem;
+      color: var(--grey);
+      line-height: 1.5;
+      margin-bottom: 8px;
+      flex: 1;
+    }
+    .product-card .card-info .size-price {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      margin-bottom: 10px;
+    }
+    .product-card .card-info .size-price select {
+      padding: 6px 10px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--charcoal);
+      outline: none;
+      cursor: pointer;
+      flex: 1 1 80px;
+      min-width: 60px;
+    }
+    .product-card .card-info .size-price select:focus {
+      border-color: var(--forest);
+    }
+    .product-card .card-info .size-price .price {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--forest);
+      white-space: nowrap;
+    }
+    .product-card .card-info .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .product-card .card-info .card-actions .btn-order {
+      flex: 2;
+    }
+    .product-card .card-info .card-actions .btn-outline {
+      flex: 1;
+      font-size: 11px;
+      padding: 10px 12px;
+    }
+    .product-card .card-info .view-link {
+      font-size: 12px;
+      color: var(--grey);
+      text-align: center;
+      margin-top: 8px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+      align-self: center;
+    }
+    .product-card .card-info .view-link:hover {
+      color: var(--forest);
+      border-color: var(--forest);
+    }
+
+    /* Shop bottom sections */
+    .shop-bottom-section {
+      padding: 50px 0;
+    }
+    .shop-bottom-section.cream {
+      background: var(--cream);
+    }
+    .shop-bottom-section.ivory {
+      background: var(--ivory);
+    }
+    .shop-bottom-section.forest {
+      background: var(--forest);
+      color: var(--ivory);
+    }
+    .shop-bottom-section .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 500;
+      color: var(--forest);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .shop-bottom-section.forest .section-title {
+      color: var(--ivory);
+    }
+    .shop-bottom-section .section-text {
+      font-size: clamp(0.95rem, 1vw, 1.1rem);
+      color: var(--grey);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .shop-bottom-section.forest .section-text {
+      color: rgba(245, 241, 232, 0.8);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--forest);
+      color: var(--ivory);
+      padding: 48px 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--ivory);
+      opacity: 0.8;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: rgba(245, 241, 232, 0.7);
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: var(--ivory);
+    }
+    .footer-col p {
+      font-size: 14px;
+      color: rgba(245, 241, 232, 0.7);
+      line-height: 1.6;
+    }
+    .footer-brand a {
+      display: inline-block;
+    }
+    .footer-brand img {
+      height: 60px;
+      width: auto;
+      display: block;
+      margin-bottom: 8px;
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+    .footer-brand p {
+      margin-top: 8px;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(245, 241, 232, 0.1);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(245, 241, 232, 0.5);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .shop-controls {
+        top: 56px;
+      }
+      .controls-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .controls-inner .search-wrap {
+        flex: 1 1 auto;
+      }
+      .controls-inner .filter-wrap {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .controls-inner .filter-wrap .filter-btn {
+        flex-shrink: 0;
+        padding: 4px 14px;
+        font-size: 10px;
+      }
+      .controls-inner .sort-wrap {
+        align-self: flex-end;
+      }
+      .controls-inner .sort-wrap select {
+        width: 100%;
+        min-width: 0;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        justify-items: center;
+        text-align: center;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-brand img {
+        height: 48px;
+      }
+      .header-actions {
+        gap: 14px;
+      }
+      .header {
+        top: 0;
+      }
+      .shop-hero {
+        padding: 28px 0 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .product-card .card-info {
+        padding: 10px 10px 12px;
+      }
+      .product-card .card-info .product-name {
+        font-size: 0.95rem;
+      }
+      .product-card .card-info .product-desc {
+        font-size: 0.78rem;
+      }
+      .product-card .card-info .size-price select {
+        font-size: 11px;
+        padding: 4px 8px;
+      }
+      .product-card .card-info .size-price .price {
+        font-size: 0.95rem;
+      }
+      .product-card .card-info .card-actions {
+        flex-direction: column;
+        gap: 6px;
+      }
+      .product-card .card-info .card-actions .btn-order,
+      .product-card .card-info .card-actions .btn-outline {
+        font-size: 10px;
+        padding: 8px 12px;
+        width: 100%;
+      }
+      .product-card .card-image .category-badge {
+        font-size: 7px;
+        padding: 2px 8px;
+        top: 6px;
+        left: 6px;
+      }
+      .shop-hero h1 {
+        font-size: clamp(2.2rem, 9vw, 3rem);
+      }
+      .shop-hero p {
+        font-size: 0.95rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .footer-brand img {
+        height: 44px;
+      }
+      .header-inner {
+        height: 56px;
+      }
+      .header-logo img {
+        height: clamp(32px, 8vw, 44px);
+      }
+      .header-actions {
+        gap: 10px;
+      }
+      .shop-bottom-section {
+        padding: 30px 0;
+      }
+      .shop-bottom-section .section-title {
+        font-size: clamp(1.6rem, 6vw, 2.2rem);
+      }
+    }
+
+    @media (max-width: 375px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .footer-grid {
+        justify-items: center;
+        text-align: center;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-col {
+        text-align: center;
+      }
+      .footer-col a {
+        text-align: center;
+      }
+    }
+
+    /* ===== REVEAL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .product-card:hover .card-image img {
+        transform: none;
+      }
+      .product-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== ANNOUNCEMENT BAR ===== -->
+  <div class="announcement">Bangladesh-wide delivery • Authentic Bengali flavours • Made with care</div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="index.html"><img src="secondary horizontal.png" alt="PURE SPICES"></a>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="our-story.html">Our Story</a>
+        <a href="bengali-tradition.html">Bengali Tradition</a>
+        <a href="ingredients.html">Ingredients</a>
+      </nav>
+      <div class="header-actions">
+        <button id="searchToggle" aria-label="Search">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <a href="account.html" aria-label="Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button id="cartToggle" aria-label="Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="menuToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="menuClose">✕</button>
+    <a href="index.html">Home</a>
+    <a href="products.html">Shop</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="bengali-tradition.html">Bengali Tradition</a>
+    <a href="ingredients.html">Ingredients</a>
+    <a href="faq.html">FAQ</a>
+    <a href="delivery.html">Delivery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- ===== SEARCH OVERLAY ===== -->
+  <div class="search-overlay" id="searchOverlay">
+    <button class="search-close" id="searchClose">✕</button>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search products..." autofocus>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <span>Your Cart</span>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Your cart is empty.</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Subtotal</span>
+        <span id="cartTotal">৳0</span>
+      </div>
+      <a href="checkout.html" class="cart-checkout">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <!-- ===== SHOP HERO ===== -->
+  <section class="container shop-hero">
+    <span class="eyebrow">From our kitchen to your table</span>
+    <h1>THE PURE<br>SPICES COLLECTION</h1>
+    <p>Signature picks — From Tahrima's Kitchen</p>
+  </section>
+
+  <!-- ===== SHOP CONTROLS ===== -->
+  <div class="shop-controls" id="shopControls">
+    <div class="container controls-inner">
+      <div class="search-wrap">
+        <input type="text" id="productSearch" placeholder="Search our products…" aria-label="Search products">
+      </div>
+      <div class="filter-wrap" id="filterWrap">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="spice-powders">Spice Powders</button>
+        <button class="filter-btn" data-category="whole-spices">Whole Spices</button>
+        <button class="filter-btn" data-category="traditional-foods">Traditional Foods</button>
+        <button class="filter-btn" data-category="achar">Achar</button>
+        <button class="filter-btn" data-category="gur">Gur</button>
+        <button class="filter-btn" data-category="mustard-oil">Mustard & Oil</button>
+      </div>
+      <div class="sort-wrap">
+        <select id="sortSelect" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="az">A–Z</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PRODUCT GRID ===== -->
+  <section class="product-grid-wrap pattern-bg">
+    <div class="container">
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== BRAND STORY SECTION ===== -->
+  <section class="shop-bottom-section cream">
+    <div class="container" style="text-align:center; max-width:640px; margin:0 auto;">
+      <h2 class="section-title">MADE THE WAY<br>SHE'S ALWAYS MADE IT.</h2>
+      <p class="section-text" style="margin:0 auto;">Every Pure Spices product is prepared by Tahrima herself, using carefully selected ingredients and the same care she has always given the people around her.</p>
+      <p class="section-text" style="margin:12px auto 0; font-weight:500; color:var(--forest);">Made in-house. Prepared manually. No preservatives.</p>
+      <a href="our-story.html" class="btn-primary" style="margin-top:20px; display:inline-block;">Our Story</a>
+    </div>
+  </section>
+
+  <!-- ===== DELIVERY NOTE ===== -->
+  <section class="shop-bottom-section forest pattern-bg">
+    <div class="container" style="text-align:center; max-width:600px; margin:0 auto;">
+      <h2 class="section-title" style="color:var(--ivory);">BANGLADESH-WIDE<br>DELIVERY</h2>
+      <p class="section-text" style="color:rgba(245,241,232,0.8); margin:0 auto;">Orders are delivered across Bangladesh. Delivery typically takes up to 2 days, but customers should allow up to 4 days depending on location and circumstances.</p>
+      <p class="section-text" style="color:rgba(245,241,232,0.7); margin:8px auto 0; font-size:0.95rem;">Delivery fees depend on order weight and location.</p>
+      <a href="delivery.html" class="btn-light" style="background:var(--ivory); color:var(--forest); padding:14px 36px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; font-size:13px; border-radius:2px; display:inline-block; margin-top:20px;">Delivery Information</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html"><img src="secondary horizontal.png" alt="PURE SPICES"></a>
+          <p>Authentic Bengali flavours, made with care in Shailkupa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="products.html">All Products</a>
+          <a href="products.html">Spices & Masalas</a>
+          <a href="products.html">Sweets & Snacks</a>
+          <a href="products.html">Pickles</a>
+          <a href="products.html">Traditional Essentials</a>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <a href="our-story.html">Our Story</a>
+          <a href="bengali-tradition.html">Bengali Tradition</a>
+          <a href="ingredients.html">Ingredients</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="faq.html">FAQ</a>
+          <a href="delivery.html">Delivery</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Conditions</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>Shailkupa, Bangladesh</p>
+          <p style="margin-top:4px;">WhatsApp: <a href="https://wa.me/8801912136746" target="_blank" style="color:rgba(245,241,232,0.7);">+880 1912-136746</a></p>
+          <p>Email: <a href="mailto:hello.purespices@gmail.com" style="color:rgba(245,241,232,0.7);">hello.purespices@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© Pure Spices — All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== PRODUCT DATA =====
+    const productsData = [
+      // SPICE POWDERS
+      {
+        id: 1,
+        name: "Holuder Gura",
+        nameEn: "Turmeric Powder",
+        category: "spice-powders",
+        desc: "Pure turmeric powder prepared from carefully selected turmeric.",
+        image: "assets/products/holuder-gura.jpg",
+        sizes: [
+          { label: "500g", price: 500 },
+          { label: "1kg", price: 900 }
+        ],
+        featured: false
+      },
+      {
+        id: 2,
+        name: "Biriyani Masala",
+        nameEn: "Biriyani Masala",
+        category: "spice-powders",
+        desc: "Aromatic biriyani spice blend prepared in-house.",
+        image: "assets/products/biriyani-masala.jpg",
+        sizes: [
+          { label: "500g", price: 600 },
+          { label: "1kg", price: 1100 }
+        ],
+        featured: false
+      },
+      {
+        id: 3,
+        name: "Shahi Masala",
+        nameEn: "Shahi Masala",
+        category: "spice-powders",
+        desc: "A rich, aromatic masala blend prepared with carefully selected spices.",
+        image: "assets/products/shahi-masala.jpg",
+        sizes: [
+          { label: "500g", price: 600 },
+          { label: "1kg", price: 1100 }
+        ],
+        featured: false
+      },
+      {
+        id: 4,
+        name: "Jirar Gura",
+        nameEn: "Cumin Powder",
+        category: "spice-powders",
+        desc: "Freshly prepared cumin powder with a warm, earthy aroma.",
+        image: "assets/products/jirar-gura.jpg",
+        sizes: [
+          { label: "500g", price: 600 },
+          { label: "1kg", price: 1100 }
+        ],
+        featured: false
+      },
+      {
+        id: 5,
+        name: "Moricher Gura",
+        nameEn: "Chili Powder",
+        category: "spice-powders",
+        desc: "Bold chili powder prepared for natural heat and flavour.",
+        image: "assets/products/moricher-gura.jpg",
+        sizes: [
+          { label: "500g", price: 500 },
+          { label: "1kg", price: 900 }
+        ],
+        featured: false
+      },
+      {
+        id: 6,
+        name: "Dhonia Gura",
+        nameEn: "Coriander Powder",
+        category: "spice-powders",
+        desc: "Aromatic coriander powder prepared from carefully selected coriander seeds.",
+        image: "assets/products/dhonia-gura.jpg",
+        sizes: [
+          { label: "500g", price: 500 },
+          { label: "1kg", price: 900 }
+        ],
+        featured: false
+      },
+
+      // WHOLE SPICES
+      {
+        id: 7,
+        name: "Shukna Morich",
+        nameEn: "Whole Dried Red Chili",
+        category: "whole-spices",
+        desc: "Whole dried red chilies selected for colour, aroma and natural heat.",
+        image: "assets/products/shukna-morich.jpg",
+        sizes: [
+          { label: "250g", price: 300 },
+          { label: "500g", price: 500 },
+          { label: "1kg", price: 900 }
+        ],
+        featured: false
+      },
+      {
+        id: 8,
+        name: "Jeera",
+        nameEn: "Whole Cumin",
+        category: "whole-spices",
+        desc: "Whole cumin seeds with a warm, earthy aroma.",
+        image: "assets/products/jeera.jpg",
+        sizes: [
+          { label: "250g", price: 300 },
+          { label: "500g", price: 550 },
+          { label: "1kg", price: 1000 }
+        ],
+        featured: false
+      },
+      {
+        id: 9,
+        name: "Chili Flakes",
+        nameEn: "Chili Flakes",
+        category: "whole-spices",
+        desc: "Coarsely prepared dried chili flakes for cooking and finishing.",
+        image: "assets/products/chili-flakes.jpg",
+        sizes: [
+          { label: "250g", price: 300 },
+          { label: "500g", price: 500 },
+          { label: "1kg", price: 900 }
+        ],
+        featured: false
+      },
+      {
+        id: 10,
+        name: "Sharisha Dana",
+        nameEn: "Mustard Seeds",
+        category: "whole-spices",
+        desc: "Aromatic mustard seeds essential to Bengali cooking.",
+        image: "assets/products/sharisha-dana.jpg",
+        sizes: [
+          { label: "250g", price: 250 },
+          { label: "500g", price: 450 },
+          { label: "1kg", price: 800 }
+        ],
+        featured: false
+      },
+
+      // TRADITIONAL FOODS
+      {
+        id: 11,
+        name: "Kumra Bori",
+        nameEn: "Kumra Bori",
+        category: "traditional-foods",
+        desc: "A traditional Bengali preparation made to pair beautifully with everyday dishes. Traditionally enjoyed with fish curry and lau.",
+        image: "assets/products/kumra-bori.jpg",
+        sizes: [
+          { label: "250g", price: 400 },
+          { label: "500g", price: 700 },
+          { label: "1kg", price: 1300 }
+        ],
+        featured: true
+      },
+      {
+        id: 12,
+        name: "Narkel Naru",
+        nameEn: "Coconut Naru",
+        category: "traditional-foods",
+        desc: "Fresh coconut grated by hand and brought together with rich date gur.",
+        image: "assets/products/narkel-naru.jpg",
+        sizes: [
+          { label: "250g", price: 450 },
+          { label: "500g", price: 800 },
+          { label: "1kg", price: 1500 }
+        ],
+        featured: true
+      },
+      {
+        id: 14,
+        name: "Sharishar Oil",
+        nameEn: "Mustard Oil",
+        category: "mustard-oil",
+        desc: "Rich mustard oil made for the unmistakable flavour of Bengali cooking.",
+        image: "assets/products/sharishar-oil.jpg",
+        sizes: [
+          { label: "500ml", price: 450 },
+          { label: "1L", price: 800 },
+          { label: "2L", price: 1500 }
+        ],
+        featured: true
+      },
+
+      // MUSTARD & OIL (the rest)
+      {
+        id: 13,
+        name: "Muri Moa",
+        nameEn: "Puffed Rice Moa",
+        category: "traditional-foods",
+        desc: "Fresh homemade murir moa prepared without preservatives.",
+        image: "assets/products/muri-moa.jpg",
+        sizes: [
+          { label: "250g", price: 400 },
+          { label: "500g", price: 700 },
+          { label: "1kg", price: 1300 }
+        ],
+        featured: false
+      },
+
+      // GUR
+      {
+        id: 15,
+        name: "Akher Gur",
+        nameEn: "Sugarcane Gur",
+        category: "gur",
+        desc: "Rich traditional gur with a deep natural sweetness.",
+        image: "assets/products/akher-gur.jpg",
+        sizes: [
+          { label: "1kg", price: 500 },
+          { label: "2kg", price: 950 },
+          { label: "3kg", price: 1350 }
+        ],
+        featured: false
+      },
+      {
+        id: 16,
+        name: "Narkel Gur",
+        nameEn: "Coconut Gur",
+        category: "gur",
+        desc: "Rich, traditional sweetness connected to the flavours of Bengal.",
+        image: "assets/products/narkel-gur.jpg",
+        sizes: [
+          { label: "1kg", price: 600 },
+          { label: "2kg", price: 1100 },
+          { label: "3kg", price: 1550 }
+        ],
+        featured: false
+      },
+
+      // ACHAR
+      {
+        id: 17,
+        name: "Tentuler Achar",
+        nameEn: "Tamarind Pickle",
+        category: "achar",
+        desc: "Tangy, rich and full of Bengali character.",
+        image: "assets/products/tentuler-achar.jpg",
+        sizes: [
+          { label: "500ml", price: 450 },
+          { label: "1L", price: 800 }
+        ],
+        featured: false
+      },
+      {
+        id: 18,
+        name: "Jol Pai Achar",
+        nameEn: "Olive Pickle",
+        category: "achar",
+        desc: "A bold Bengali pickle with a balance of tangy and savoury flavour.",
+        image: "assets/products/jolpai-achar.jpg",
+        sizes: [
+          { label: "500ml", price: 450 },
+          { label: "1L", price: 800 }
+        ],
+        featured: false
+      },
+      {
+        id: 19,
+        name: "Aamer Achar",
+        nameEn: "Mango Pickle",
+        category: "achar",
+        desc: "A classic Bengali mango pickle prepared with care.",
+        image: "assets/products/aamer-achar.jpg",
+        sizes: [
+          { label: "500ml", price: 450 },
+          { label: "1L", price: 800 }
+        ],
+        featured: false
+      },
+      {
+        id: 20,
+        name: "Boroier Achar",
+        nameEn: "Jujube Pickle",
+        category: "achar",
+        desc: "A traditional pickle made with Bengali jujube.",
+        image: "assets/products/boroier-achar.jpg",
+        sizes: [
+          { label: "500ml", price: 450 },
+          { label: "1L", price: 800 }
+        ],
+        featured: false
+      },
+      {
+        id: 21,
+        name: "Roshuner Achar",
+        nameEn: "Garlic Pickle",
+        category: "achar",
+        desc: "Bold garlic pickle with rich, savoury flavour.",
+        image: "assets/products/roshuner-achar.jpg",
+        sizes: [
+          { label: "500ml", price: 500 },
+          { label: "1L", price: 900 }
+        ],
+        featured: false
+      }
+    ];
+
+    // ===== CART =====
+    let cart = JSON.parse(localStorage.getItem('pureSpicesCart')) || [];
+
+    function saveCart() {
+      localStorage.setItem('pureSpicesCart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cartCount').textContent = count;
+      const itemsContainer = document.getElementById('cartItems');
+      const totalSpan = document.getElementById('cartTotal');
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = '<div class="cart-empty">Your cart is empty.</div>';
+        totalSpan.textContent = '৳0';
+        return;
+      }
+      let html = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const price = item.price || 0;
+        const subtotal = price * item.qty;
+        total += subtotal;
+        html += `
+          <div class="cart-item">
+            <img src="${item.image || ''}" alt="${item.name}" onerror="this.style.display='none'">
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">৳${price || '—'}</div>
+              <div class="cart-item-qty">
+                <button onclick="changeQty(${index}, -1)">−</button>
+                <span>${item.qty}</span>
+                <button onclick="changeQty(${index}, 1)">+</button>
+              </div>
+            </div>
+            <button class="cart-item-remove" onclick="removeItem(${index})">✕</button>
+          </div>
+        `;
+      });
+      itemsContainer.innerHTML = html;
+      totalSpan.textContent = `৳${total}`;
+    }
+
+    function changeQty(index, delta) {
+      if (cart[index]) {
+        cart[index].qty = Math.max(0, cart[index].qty + delta);
+        if (cart[index].qty === 0) {
+          cart.splice(index, 1);
+        }
+        saveCart();
+      }
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+    }
+
+    // ===== PRODUCT CARD RENDERING =====
+    const WA_NUMBER = '8801912136746';
+    const FB_URL = 'https://www.facebook.com/purespicesshop/';
+
+    function getProductUrl(product) {
+      const slugMap = {
+        'Holuder Gura': 'holuder-gura.html',
+        'Biriyani Masala': 'biriyani-masala.html',
+        'Shahi Masala': 'shahi-masala.html',
+        'Jirar Gura': 'jirar-gura.html',
+        'Moricher Gura': 'moricher-gura.html',
+        'Dhonia Gura': 'dhonia-gura.html',
+        'Shukna Morich': 'whole-shukna-morich.html',
+        'Jeera': 'jeera.html',
+        'Chili Flakes': 'chili-flakes.html',
+        'Sharisha Dana': 'sharisha-dana.html',
+        'Kumra Bori': 'kumra-bori.html',
+        'Narkel Naru': 'narkel-naru.html',
+        'Muri Moa': 'muri-moa.html',
+        'Sharishar Oil': 'sharishar-oil.html',
+        'Akher Gur': 'akher-gur.html',
+        'Narkel Gur': 'narkel-gur.html',
+        'Tentuler Achar': 'tentuler-achar.html',
+        'Jol Pai Achar': 'jolpai-achar.html',
+        'Aamer Achar': 'aamer-achar.html',
+        'Boroier Achar': 'boroier-achar.html',
+        'Roshuner Achar': 'roshuner-achar.html'
+      };
+      return 'products/' + (slugMap[product.name] || product.name.toLowerCase().replace(/\s+/g, '-') + '.html');
+    }
+
+    function renderProductCard(product) {
+      const defaultSize = product.sizes[0];
+      const price = defaultSize.price;
+      const sizeLabel = defaultSize.label;
+
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.dataset.id = product.id;
+      card.dataset.category = product.category;
+
+      const imgSrc = product.image;
+      const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${product.name}" loading="lazy" onerror="this.style.display='none'">` : `<span style="color:var(--grey);font-weight:300;font-size:12px;">${product.name}</span>`;
+
+      const sizesOptions = product.sizes.map(s =>
+        `<option value="${s.label}" data-price="${s.price}">${s.label} — ৳${s.price}</option>`
+      ).join('');
+
+      const waMessage = encodeURIComponent(`Hi Pure Spices, I'd like to order:\n${product.name} (${product.nameEn})\nSize: ${sizeLabel}\nPrice: ৳${price}`);
+
+      card.innerHTML = `
+        <div class="card-image">
+          ${imgHtml}
+          <span class="category-badge">${product.category.replace('-', ' ')}</span>
+        </div>
+        <div class="card-info">
+          <div class="product-name">${product.name}</div>
+          <div class="product-name-en">${product.nameEn}</div>
+          <div class="product-desc">${product.desc}</div>
+          <div class="size-price">
+            <select class="size-select" data-product-id="${product.id}">
+              ${sizesOptions}
+            </select>
+            <span class="price" data-product-id="${product.id}">৳${price}</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://wa.me/${WA_NUMBER}?text=${waMessage}" target="_blank" class="btn-order">Order Now</a>
+            <a href="${FB_URL}" target="_blank" class="btn-outline">FB</a>
+          </div>
+          <a href="${getProductUrl(product)}" class="view-link">View Product →</a>
+        </div>
+      `;
+
+      // Size change handler
+      const select = card.querySelector('.size-select');
+      const priceSpan = card.querySelector('.price');
+      select.addEventListener('change', function() {
+        const selected = this.options[this.selectedIndex];
+        const newPrice = selected.dataset.price;
+        priceSpan.textContent = '৳' + newPrice;
+        // Update WhatsApp link
+        const productName = product.name;
+        const nameEn = product.nameEn;
+        const sizeLabel = selected.value;
+        const waMsg = encodeURIComponent(`Hi Pure Spices, I'd like to order:\n${productName} (${nameEn})\nSize: ${sizeLabel}\nPrice: ৳${newPrice}`);
+        const orderBtn = card.querySelector('.btn-order');
+        orderBtn.href = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
+      });
+
+      return card;
+    }
+
+    // ===== FILTERING =====
+    let currentCategory = 'all';
+    let currentSort = 'featured';
+    let searchQuery = '';
+
+    function filterAndSortProducts() {
+      let filtered = productsData;
+
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === currentCategory);
+      }
+
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        filtered = filtered.filter(p =>
+          p.name.toLowerCase().includes(q) ||
+          p.nameEn.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+        );
+      }
+
+      switch (currentSort) {
+        case 'price-low':
+          filtered.sort((a, b) => a.sizes[0].price - b.sizes[0].price);
+          break;
+        case 'price-high':
+          filtered.sort((a, b) => b.sizes[0].price - a.sizes[0].price);
+          break;
+        case 'az':
+          filtered.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        default:
+          filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+          break;
+      }
+
+      return filtered;
+    }
+
+    function updateGrid() {
+      const filtered = filterAndSortProducts();
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+      filtered.forEach(p => {
+        const card = renderProductCard(p);
+        grid.appendChild(card);
+      });
+    }
+
+    // ===== EVENT LISTENERS =====
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentCategory = this.dataset.category;
+        updateGrid();
+      });
+    });
+
+    const searchInput = document.getElementById('productSearch');
+    searchInput.addEventListener('input', function() {
+      searchQuery = this.value;
+      updateGrid();
+    });
+
+    document.getElementById('sortSelect').addEventListener('change', function() {
+      currentSort = this.value;
+      updateGrid();
+    });
+
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+      const controls = document.getElementById('shopControls');
+      if (controls) {
+        const headerHeight = document.getElementById('header').offsetHeight;
+        controls.style.top = headerHeight + 'px';
+      }
+    });
+
+    // ===== MOBILE MENU =====
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuClose = document.getElementById('menuClose');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    menuToggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    // ===== CART TOGGLE =====
+    document.getElementById('cartToggle').addEventListener('click', () => {
+      document.getElementById('cartDrawer').classList.toggle('open');
+    });
+    document.getElementById('cartClose').addEventListener('click', () => {
+      document.getElementById('cartDrawer').classList.remove('open');
+    });
+
+    // ===== SEARCH OVERLAY =====
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchInputOverlay = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    document.getElementById('searchToggle').addEventListener('click', () => {
+      searchOverlay.classList.toggle('active');
+      if (searchOverlay.classList.contains('active')) {
+        setTimeout(() => searchInputOverlay.focus(), 100);
+      }
+    });
+    document.getElementById('searchClose').addEventListener('click', () => {
+      searchOverlay.classList.remove('active');
+      searchResults.innerHTML = '';
+    });
+
+    searchInputOverlay.addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      if (!query) { searchResults.innerHTML = ''; return; }
+      const filtered = productsData.filter(p =>
+        p.name.toLowerCase().includes(query) ||
+        p.nameEn.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+      );
+      if (filtered.length === 0) {
+        searchResults.innerHTML = '<div style="padding:12px; color:var(--grey);">No products found.</div>';
+        return;
+      }
+      searchResults.innerHTML = filtered.slice(0, 8).map(p => `
+        <div class="result-item" onclick="location.href='${getProductUrl(p)}'">
+          <span>${p.name}</span>
+          <span style="color:var(--grey);font-size:13px;">${p.category.replace('-', ' ')}</span>
+        </div>
+      `).join('');
+    });
+
+    // ===== REVEAL ON SCROLL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.05 });
+
+    document.querySelectorAll('.shop-hero, .product-grid-wrap, .shop-bottom-section').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+
+    // ===== INIT =====
+    updateGrid();
+    updateCartUI();
+
+    document.addEventListener('click', function(e) {
+      const drawer = document.getElementById('cartDrawer');
+      if (drawer.classList.contains('open') && !drawer.contains(e.target) && e.target.closest('#cartToggle') === null) {
+        drawer.classList.remove('open');
+      }
+    });
+
+    console.log('PURE SPICES — Shop page');
+  </script>
+</body>
+</html>

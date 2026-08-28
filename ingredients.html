@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Ingredients — Pure Spices</title>
+  <meta name="description" content="Pure Spices ingredients — grown on Tahrima's own land, prepared by hand, and made without preservatives.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== GLOBAL DESIGN SYSTEM ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ivory: #F5F1E8;
+      --cream: #EDE7DA;
+      --forest: #173B2C;
+      --forest-muted: #28513F;
+      --terracotta: #A94E35;
+      --charcoal: #171815;
+      --grey: #77736B;
+      --border-subtle: rgba(23, 59, 44, 0.18);
+      --font-serif: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Manrope', 'Inter', 'Helvetica Neue', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--charcoal);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: var(--font-sans);
+      border: none;
+      background: none;
+    }
+
+    .container {
+      width: min(100% - 2rem, 1280px);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* ===== ANNOUNCEMENT BAR ===== */
+    .announcement {
+      background: var(--forest);
+      color: var(--ivory);
+      text-align: center;
+      padding: 8px 16px;
+      font-size: clamp(9px, 0.65vw, 12px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-family: var(--font-sans);
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--ivory);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .header.scrolled {
+      background: rgba(245, 241, 232, 0.95);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      padding: 0 16px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .header-logo a {
+      display: flex;
+      align-items: center;
+    }
+    .header-logo img {
+      height: clamp(40px, 4.8vw, 68px);
+      width: auto;
+      display: block;
+      filter: brightness(0) saturate(100%) invert(22%) sepia(18%) saturate(1320%) hue-rotate(100deg) brightness(94%) contrast(92%);
+    }
+    .header-nav {
+      display: none;
+    }
+    .header-nav a {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      color: var(--charcoal);
+      padding: 0 18px;
+      transition: color 0.2s;
+      text-transform: uppercase;
+    }
+    .header-nav a:hover {
+      color: var(--forest);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .header-actions button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--charcoal);
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      position: relative;
+    }
+    .header-actions button:hover {
+      color: var(--forest);
+    }
+    .header-actions a {
+      display: flex;
+      align-items: center;
+      color: var(--charcoal);
+      transition: color 0.2s;
+    }
+    .header-actions a:hover {
+      color: var(--forest);
+    }
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -6px;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 600;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--charcoal);
+      transition: 0.3s;
+    }
+
+    @media (min-width: 769px) {
+      .header-nav {
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+      .hamburger {
+        display: none;
+      }
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 360px;
+      height: 100vh;
+      background: var(--forest);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      padding: 80px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow-y: auto;
+    }
+    .mobile-menu.open {
+      right: 0;
+    }
+    .mobile-menu a {
+      color: var(--ivory);
+      font-size: 17px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(245, 241, 232, 0.08);
+      transition: opacity 0.2s;
+    }
+    .mobile-menu a:hover {
+      opacity: 0.7;
+    }
+    .mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--ivory);
+      font-size: 28px;
+    }
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ===== SEARCH OVERLAY ===== */
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(245, 241, 232, 0.97);
+      z-index: 1500;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 80px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .search-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .search-box {
+      width: min(90%, 600px);
+    }
+    .search-box input {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 20px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--forest);
+      outline: none;
+      font-family: var(--font-serif);
+      color: var(--charcoal);
+    }
+    .search-box input::placeholder {
+      color: var(--grey);
+      opacity: 0.6;
+    }
+    .search-results {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .search-results .result-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-results .result-item:hover {
+      background: var(--cream);
+    }
+    .search-close {
+      position: absolute;
+      top: 28px;
+      right: 32px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: var(--charcoal);
+    }
+
+    /* ===== CART DRAWER ===== */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: min(100%, 420px);
+      height: 100vh;
+      background: var(--ivory);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      padding: 24px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.05);
+    }
+    .cart-drawer.open {
+      right: 0;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 18px;
+      font-weight: 500;
+      font-family: var(--font-serif);
+    }
+    .cart-close {
+      font-size: 24px;
+      background: none;
+      border: none;
+    }
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(23, 59, 44, 0.06);
+    }
+    .cart-item img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 2px;
+      background: var(--cream);
+    }
+    .cart-item-info {
+      flex: 1;
+    }
+    .cart-item-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .cart-item-price {
+      font-size: 13px;
+      color: var(--grey);
+    }
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .cart-item-qty button {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      background: transparent;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    .cart-item-qty button:hover {
+      background: var(--forest);
+      color: var(--ivory);
+      border-color: var(--forest);
+    }
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--grey);
+      font-size: 18px;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .cart-item-remove:hover {
+      color: var(--terracotta);
+    }
+    .cart-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 16px;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .cart-checkout {
+      width: 100%;
+      padding: 14px;
+      background: var(--forest);
+      color: var(--ivory);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+      display: block;
+      text-align: center;
+    }
+    .cart-checkout:hover {
+      background: var(--forest-muted);
+    }
+    .cart-empty {
+      text-align: center;
+      color: var(--grey);
+      padding: 40px 0;
+      font-size: 15px;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary {
+      background: var(--forest);
+      color: var(--ivory);
+      padding: 14px 36px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      transition: background 0.25s, transform 0.1s;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn-primary:hover {
+      background: var(--forest-muted);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--forest);
+      padding: 14px 36px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      transition: background 0.25s, border-color 0.25s;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn-secondary:hover {
+      background: var(--cream);
+      border-color: var(--forest);
+    }
+
+    /* ===== PATTERN BACKGROUND ===== */
+    .pattern-bg {
+      position: relative;
+    }
+    .pattern-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/pattern.png');
+      background-size: 30% auto;
+      background-repeat: repeat;
+      background-position: center;
+      opacity: 0.10;
+      pointer-events: none;
+    }
+    .pattern-bg .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== INGREDIENTS PAGE SPECIFIC ===== */
+    /* Hero */
+    .ingredients-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 40px 0 60px;
+      min-height: 70vh;
+    }
+    .ingredients-hero-text .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 500;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .ingredients-hero-text h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      font-weight: 500;
+      color: var(--forest);
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .ingredients-hero-text p {
+      font-size: clamp(1rem, 1.1vw, 1.2rem);
+      color: var(--grey);
+      max-width: 480px;
+      line-height: 1.8;
+    }
+    .ingredients-hero-image {
+      background: var(--cream);
+      aspect-ratio: 4/5;
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey);
+      font-size: 14px;
+    }
+    .ingredients-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Section common */
+    .ingredients-section {
+      padding: 60px 0;
+    }
+    .ingredients-section.cream {
+      background: var(--cream);
+    }
+    .ingredients-section.ivory {
+      background: var(--ivory);
+    }
+    .ingredients-section.forest {
+      background: var(--forest);
+      color: var(--ivory);
+    }
+    .ingredients-section.forest .section-title {
+      color: var(--ivory);
+    }
+    .ingredients-section.forest .section-text {
+      color: rgba(245, 241, 232, 0.85);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+      font-weight: 500;
+      color: var(--forest);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-text {
+      font-size: clamp(1rem, 1.1vw, 1.2rem);
+      color: var(--charcoal);
+      line-height: 1.8;
+      max-width: 680px;
+    }
+    .section-text + .section-text {
+      margin-top: 16px;
+    }
+    .ingredients-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .ingredients-grid .section-text {
+      max-width: 100%;
+    }
+    .ingredients-grid .ingredients-image {
+      background: var(--ivory);
+      aspect-ratio: 4/3;
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey);
+      font-size: 14px;
+    }
+    .ingredients-grid .ingredients-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ingredients-section.forest .ingredients-image {
+      background: rgba(245, 241, 232, 0.05);
+    }
+
+    /* Ingredient Cards Grid */
+    .ingredient-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .ingredient-card {
+      background: var(--ivory);
+      padding: 24px 16px 20px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .ingredient-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(23, 59, 44, 0.06);
+    }
+    .ingredient-card .ingredient-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: var(--cream);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey);
+      font-size: 12px;
+    }
+    .ingredient-card .ingredient-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ingredient-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--forest);
+      margin-bottom: 4px;
+    }
+    .ingredient-card .ingredient-used {
+      font-size: 0.8rem;
+      color: var(--terracotta);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .ingredient-card p {
+      font-size: 0.9rem;
+      color: var(--grey);
+      line-height: 1.5;
+    }
+    .ingredients-section.forest .ingredient-card {
+      background: rgba(245, 241, 232, 0.06);
+      border-color: rgba(245, 241, 232, 0.12);
+    }
+    .ingredients-section.forest .ingredient-card h4 {
+      color: var(--ivory);
+    }
+    .ingredients-section.forest .ingredient-card p {
+      color: rgba(245, 241, 232, 0.7);
+    }
+    .ingredients-section.forest .ingredient-card .ingredient-used {
+      color: rgba(245, 241, 232, 0.5);
+    }
+
+    /* Product connection flow */
+    .connection-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .flow-item {
+      text-align: center;
+      padding: 16px 8px;
+      background: var(--ivory);
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+    }
+    .flow-item .flow-ingredient {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--forest);
+    }
+    .flow-item .flow-arrow {
+      font-size: 1.2rem;
+      color: var(--terracotta);
+      margin: 4px 0;
+    }
+    .flow-item .flow-product {
+      font-size: 0.95rem;
+      color: var(--grey);
+    }
+    .ingredients-section.forest .flow-item {
+      background: rgba(245, 241, 232, 0.06);
+      border-color: rgba(245, 241, 232, 0.12);
+    }
+    .ingredients-section.forest .flow-item .flow-ingredient {
+      color: var(--ivory);
+    }
+    .ingredients-section.forest .flow-item .flow-product {
+      color: rgba(245, 241, 232, 0.7);
+    }
+    .ingredients-section.forest .flow-item .flow-arrow {
+      color: rgba(245, 241, 232, 0.4);
+    }
+
+    /* Process steps */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .process-step {
+      text-align: center;
+      padding: 16px 8px;
+    }
+    .process-step .step-num {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 500;
+      color: var(--forest);
+      opacity: 0.15;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .process-step h4 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--forest);
+      margin-bottom: 4px;
+    }
+    .process-step p {
+      font-size: 0.9rem;
+      color: var(--grey);
+      line-height: 1.6;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+    .ingredients-section.forest .process-step .step-num {
+      color: var(--ivory);
+      opacity: 0.25;
+    }
+    .ingredients-section.forest .process-step h4 {
+      color: var(--ivory);
+    }
+    .ingredients-section.forest .process-step p {
+      color: rgba(245, 241, 232, 0.8);
+    }
+
+    /* No preservatives big statement */
+    .no-preservatives {
+      text-align: center;
+      padding: 30px 0;
+    }
+    .no-preservatives .big-statement {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 500;
+      color: var(--forest);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .no-preservatives p {
+      font-size: clamp(1rem, 1.1vw, 1.2rem);
+      color: var(--grey);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .ingredients-section.forest .no-preservatives .big-statement {
+      color: var(--ivory);
+    }
+    .ingredients-section.forest .no-preservatives p {
+      color: rgba(245, 241, 232, 0.8);
+    }
+
+    /* Storage */
+    .storage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .storage-item {
+      background: var(--ivory);
+      padding: 24px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      text-align: center;
+    }
+    .storage-item h4 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--forest);
+      margin-bottom: 4px;
+    }
+    .storage-item p {
+      font-size: 0.95rem;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+    .ingredients-section.forest .storage-item {
+      background: rgba(245, 241, 232, 0.06);
+      border-color: rgba(245, 241, 232, 0.12);
+    }
+    .ingredients-section.forest .storage-item h4 {
+      color: var(--ivory);
+    }
+    .ingredients-section.forest .storage-item p {
+      color: rgba(245, 241, 232, 0.7);
+    }
+
+    /* Closing */
+    .ingredients-closing {
+      text-align: center;
+      padding: 50px 0 60px;
+    }
+    .ingredients-closing h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 500;
+      color: var(--forest);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .ingredients-closing p {
+      font-size: clamp(1rem, 1.1vw, 1.2rem);
+      color: var(--grey);
+      max-width: 520px;
+      margin: 0 auto 24px;
+      line-height: 1.7;
+    }
+    .ingredients-closing .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .ingredients-section.forest .ingredients-closing h2 {
+      color: var(--ivory);
+    }
+    .ingredients-section.forest .ingredients-closing p {
+      color: rgba(245, 241, 232, 0.85);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--forest);
+      color: var(--ivory);
+      padding: 48px 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--ivory);
+      opacity: 0.8;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: rgba(245, 241, 232, 0.7);
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: var(--ivory);
+    }
+    .footer-col p {
+      font-size: 14px;
+      color: rgba(245, 241, 232, 0.7);
+      line-height: 1.6;
+    }
+    .footer-brand a {
+      display: inline-block;
+    }
+    .footer-brand img {
+      height: 60px;
+      width: auto;
+      display: block;
+      margin-bottom: 8px;
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+    .footer-brand p {
+      margin-top: 8px;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(245, 241, 232, 0.1);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(245, 241, 232, 0.5);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .ingredients-hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 24px 0 40px;
+        min-height: auto;
+      }
+      .ingredients-hero-text {
+        text-align: center;
+      }
+      .ingredients-hero-text p {
+        margin: 0 auto;
+      }
+      .ingredients-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .ingredients-grid .section-text {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+      .ingredient-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .connection-flow {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .storage-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .ingredients-section {
+        padding: 40px 0;
+      }
+      .ingredients-closing {
+        padding: 30px 0 40px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        justify-items: center;
+        text-align: center;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-brand img {
+        height: 48px;
+      }
+      .header-actions {
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .ingredients-hero-text h1 {
+        font-size: clamp(2.4rem, 10vw, 3.4rem);
+      }
+      .section-title {
+        font-size: clamp(1.8rem, 7vw, 2.6rem);
+      }
+      .ingredient-cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .ingredient-card {
+        padding: 16px 10px;
+      }
+      .ingredient-card h4 {
+        font-size: 1rem;
+      }
+      .connection-flow {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .flow-item {
+        padding: 12px 4px;
+      }
+      .flow-item .flow-ingredient {
+        font-size: 0.95rem;
+      }
+      .process-steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .process-step .step-num {
+        font-size: 2.2rem;
+      }
+      .process-step h4 {
+        font-size: 1rem;
+      }
+      .process-step p {
+        font-size: 0.82rem;
+        max-width: 100%;
+      }
+      .no-preservatives .big-statement {
+        font-size: clamp(1.8rem, 8vw, 2.6rem);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .footer-brand img {
+        height: 44px;
+      }
+      .header-inner {
+        height: 56px;
+      }
+      .header-logo img {
+        height: clamp(32px, 8vw, 44px);
+      }
+      .header-actions {
+        gap: 10px;
+      }
+      .ingredients-closing h2 {
+        font-size: clamp(2rem, 8vw, 2.6rem);
+      }
+      .ingredients-closing .cta-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      .storage-item {
+        padding: 16px;
+      }
+      .storage-item h4 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .ingredient-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .connection-flow {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .footer-grid {
+        justify-items: center;
+        text-align: center;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-col {
+        text-align: center;
+      }
+      .footer-col a {
+        text-align: center;
+      }
+    }
+
+    /* ===== REVEAL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== ANNOUNCEMENT BAR ===== -->
+  <div class="announcement">Bangladesh-wide delivery • Authentic Bengali flavours • Made with care</div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="index.html"><img src="secondary horizontal.png" alt="PURE SPICES"></a>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="our-story.html">Our Story</a>
+        <a href="bengali-tradition.html">Bengali Tradition</a>
+        <a href="ingredients.html">Ingredients</a>
+      </nav>
+      <div class="header-actions">
+        <button id="searchToggle" aria-label="Search">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <a href="account.html" aria-label="Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button id="cartToggle" aria-label="Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="menuToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="menuClose">✕</button>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="bengali-tradition.html">Bengali Tradition</a>
+    <a href="ingredients.html">Ingredients</a>
+    <a href="faq.html">FAQ</a>
+    <a href="delivery.html">Delivery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- ===== SEARCH OVERLAY ===== -->
+  <div class="search-overlay" id="searchOverlay">
+    <button class="search-close" id="searchClose">✕</button>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search products..." autofocus>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <span>Your Cart</span>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Your cart is empty.</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Subtotal</span>
+        <span id="cartTotal">৳0</span>
+      </div>
+      <a href="checkout.html" class="cart-checkout">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="container ingredients-hero">
+    <div class="ingredients-hero-text">
+      <span class="eyebrow">Where good food begins</span>
+      <h1>IT STARTS<br>WITH THE INGREDIENT.</h1>
+      <p>We believe the quality of the finished food can only be as good as what goes into it.</p>
+    </div>
+    <div class="ingredients-hero-image">
+      <img src="assets/ingredients-hero.jpg" alt="Pure Spices ingredients" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);font-weight:300;\'>assets/ingredients-hero.jpg</span>'">
+    </div>
+  </section>
+
+  <!-- ===== SECTION 01 ===== -->
+  <section class="ingredients-section cream pattern-bg">
+    <div class="container">
+      <div class="ingredients-grid">
+        <div class="ingredients-image">
+          <img src="assets/land-ingredients.jpg" alt="Tahrima's land" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);font-weight:300;\'>assets/land-ingredients.jpg</span>'">
+        </div>
+        <div>
+          <h2 class="section-title">GROWN CLOSE TO HOME.</h2>
+          <p class="section-text">Many of the ingredients used by Pure Spices come from Tahrima's own land, trees and properties. This includes coconut, date gur, sugarcane gur, mustard, chilies, spices and more.</p>
+          <p class="section-text">Rather than buying finished ingredients from the market, Pure Spices relies heavily on what is grown and sourced directly through her own land and properties.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 02 ===== -->
+  <section class="ingredients-section ivory">
+    <div class="container">
+      <div class="ingredients-grid" style="direction: rtl;">
+        <div style="direction: ltr;">
+          <h2 class="section-title">NO MIDDLEMAN<br>BETWEEN CARE AND THE KITCHEN.</h2>
+          <p class="section-text">Pure Spices focuses on direct control over the ingredients and preparation process. Instead of relying on a large industrial production chain, Tahrima personally handles the preparation of her products.</p>
+          <p class="section-text">From growing and selecting to preparing and packaging — everything stays within her hands and care.</p>
+        </div>
+        <div class="ingredients-image" style="direction: ltr;">
+          <img src="assets/hands-preparing.jpg" alt="Hand preparing ingredients" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);font-weight:300;\'>assets/hands-preparing.jpg</span>'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INGREDIENT GRID ===== -->
+  <section class="ingredients-section cream pattern-bg">
+    <div class="container">
+      <div style="text-align:center; max-width:640px; margin:0 auto;">
+        <h2 class="section-title">OUR INGREDIENTS</h2>
+        <p class="section-text" style="margin:0 auto; max-width:520px;">Each one chosen, grown or prepared with care — because they're part of something bigger.</p>
+      </div>
+      <div class="ingredient-cards">
+        <div class="ingredient-card">
+          <div class="ingredient-image"><img src="assets/coconut.jpg" alt="Coconut" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);\'>coconut</span>'"></div>
+          <h4>Coconut</h4>
+          <div class="ingredient-used">Used in: Narkel Naru</div>
+          <p>Fresh coconut from Tahrima's own coconut trees, grated and prepared by hand.</p>
+        </div>
+        <div class="ingredient-card">
+          <div class="ingredient-image"><img src="assets/date-gur.jpg" alt="Date Gur" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);\'>date gur</span>'"></div>
+          <h4>Date Gur</h4>
+          <div class="ingredient-used">Used in: Narkel Naru &amp; sweets</div>
+          <p>Rich, naturally sweet gur that gives traditional Bengali sweets their characteristic depth.</p>
+        </div>
+        <div class="ingredient-card">
+          <div class="ingredient-image"><img src="assets/mustard.jpg" alt="Mustard" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);\'>mustard</span>'"></div>
+          <h4>Mustard</h4>
+          <div class="ingredient-used">Used in: Oil, Achar, spices</div>
+          <p>A fundamental ingredient in Bengali cooking, valued for its distinctive aroma and sharp character.</p>
+        </div>
+        <div class="ingredient-card">
+          <div class="ingredient-image"><img src="assets/chilies.jpg" alt="Chilies" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);\'>chilies</span>'"></div>
+          <h4>Chilies</h4>
+          <div class="ingredient-used">Used in: Powders, flakes, achar</div>
+          <p>Prepared for bold flavour and natural heat.</p>
+        </div>
+        <div class="ingredient-card">
+          <div class="ingredient-image"><img src="assets/turmeric.jpg" alt="Turmeric" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);\'>turmeric</span>'"></div>
+          <h4>Turmeric</h4>
+          <div class="ingredient-used">Used in: Turmeric powder, everyday cooking</div>
+          <p>A staple spice used throughout Bengali kitchens.</p>
+        </div>
+        <div class="ingredient-card">
+          <div class="ingredient-image"><img src="assets/coriander.jpg" alt="Coriander" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);\'>coriander</span>'"></div>
+          <h4>Coriander</h4>
+          <div class="ingredient-used">Used in: Coriander powder, masala</div>
+          <p>Freshly prepared for aromatic depth.</p>
+        </div>
+        <div class="ingredient-card">
+          <div class="ingredient-image"><img src="assets/cumin.jpg" alt="Cumin" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);\'>cumin</span>'"></div>
+          <h4>Cumin</h4>
+          <div class="ingredient-used">Used in: Jirar Gura, masala</div>
+          <p>A key spice in Bengali cooking, valued for its warm and earthy aroma.</p>
+        </div>
+        <div class="ingredient-card">
+          <div class="ingredient-image"><img src="assets/gur-ingredient.jpg" alt="Gur" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);\'>gur</span>'"></div>
+          <h4>Gur</h4>
+          <div class="ingredient-used">Used in: Naru, moa, sweets</div>
+          <p>A traditional Bengali source of sweetness with a rich, deep flavour.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCT CONNECTION ===== -->
+  <section class="ingredients-section ivory">
+    <div class="container">
+      <div style="text-align:center; max-width:640px; margin:0 auto;">
+        <h2 class="section-title">FROM INGREDIENT<br>TO PRODUCT</h2>
+        <p class="section-text" style="margin:0 auto; max-width:520px;">How what is grown becomes what is made.</p>
+      </div>
+      <div class="connection-flow">
+        <div class="flow-item">
+          <div class="flow-ingredient">Coconut + Date Gur</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-product">Narkel Naru</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-ingredient">Muri + Gur</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-product">Murir Moa</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-ingredient">Mustard</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-product">Mustard Oil</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-ingredient">Chili</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-product">Chili Powder / Flakes / Dried</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HANDMADE PROCESS ===== -->
+  <section class="ingredients-section forest pattern-bg">
+    <div class="container">
+      <div style="text-align:center; max-width:640px; margin:0 auto;">
+        <h2 class="section-title" style="color:var(--ivory);">EVERY STEP<br>IS HANDLED WITH CARE.</h2>
+        <p class="section-text" style="color:rgba(245,241,232,0.8); max-width:480px; margin:0 auto;">No machines are used in the production process. Everything is done by hand.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <h4>Selected</h4>
+          <p>Ingredients are chosen based on quality, freshness and suitability.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <h4>Prepared</h4>
+          <p>Tahrima prepares the ingredients herself.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <h4>Inspected</h4>
+          <p>Every product is personally checked before packaging.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">04</div>
+          <h4>Packaged</h4>
+          <p>Products are packaged by hand and prepared for delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NO PRESERVATIVES ===== -->
+  <section class="ingredients-section cream">
+    <div class="container">
+      <div class="no-preservatives">
+        <div class="big-statement">NO PRESERVATIVES.<br>EVER.</div>
+        <p>Pure Spices products are made without preservatives. The focus is on good ingredients, careful preparation and proper storage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUALITY STANDARD ===== -->
+  <section class="ingredients-section ivory pattern-bg">
+    <div class="container">
+      <div class="ingredients-grid">
+        <div class="ingredients-image">
+          <img src="assets/inspection.jpg" alt="Quality inspection" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:var(--grey);font-weight:300;\'>assets/inspection.jpg</span>'">
+        </div>
+        <div>
+          <h2 class="section-title">IF IT DOESN'T MEET<br>HER STANDARD, IT DOESN'T GO OUT.</h2>
+          <p class="section-text">Tahrima personally inspects every product. She only sends products that meet her standards for freshness, quality, appearance, aroma, texture and overall condition.</p>
+          <p class="section-text">This is not about certification. It is about care.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STORAGE ===== -->
+  <section class="ingredients-section cream">
+    <div class="container">
+      <div style="text-align:center; max-width:640px; margin:0 auto;">
+        <h2 class="section-title">KEEP IT THE RIGHT WAY.</h2>
+        <p class="section-text" style="margin:0 auto; max-width:520px;">Storage instructions are provided on the packaging for each individual product. Follow the instructions specific to the product.</p>
+      </div>
+      <div class="storage-grid">
+        <div class="storage-item">
+          <h4>Up to 1 Year</h4>
+          <p>When stored appropriately without freezing, products maintain their best quality.</p>
+        </div>
+        <div class="storage-item">
+          <h4>Up to 3 Years</h4>
+          <p>When kept in a freezer, products maintain their quality for longer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLOSING ===== -->
+  <section class="ingredients-section ivory">
+    <div class="container">
+      <div class="ingredients-closing">
+        <h2>GOOD FOOD<br>STARTS HERE.</h2>
+        <p>Explore the foods and ingredients Tahrima makes with the same care she has always given the people around her.</p>
+        <div class="cta-group">
+          <a href="shop.html" class="btn-primary">Shop Our Products</a>
+          <a href="our-story.html" class="btn-secondary">Our Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html"><img src="secondary horizontal.png" alt="PURE SPICES"></a>
+          <p>Authentic Bengali flavours, made with care in Shailkupa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">All Products</a>
+          <a href="shop.html">Spices & Masalas</a>
+          <a href="shop.html">Sweets & Snacks</a>
+          <a href="shop.html">Pickles</a>
+          <a href="shop.html">Traditional Essentials</a>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <a href="our-story.html">Our Story</a>
+          <a href="bengali-tradition.html">Bengali Tradition</a>
+          <a href="ingredients.html">Ingredients</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="faq.html">FAQ</a>
+          <a href="delivery.html">Delivery</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Conditions</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>Shailkupa, Bangladesh</p>
+          <p style="margin-top:4px;">WhatsApp: <a href="https://wa.me/8801912136746" target="_blank" style="color:rgba(245,241,232,0.7);">+880 1912-136746</a></p>
+          <p>Email: <a href="mailto:hello.purespices@gmail.com" style="color:rgba(245,241,232,0.7);">hello@purespices.com</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© Pure Spices — All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== CART =====
+    let cart = JSON.parse(localStorage.getItem('pureSpicesCart')) || [];
+
+    function saveCart() {
+      localStorage.setItem('pureSpicesCart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cartCount').textContent = count;
+      const itemsContainer = document.getElementById('cartItems');
+      const totalSpan = document.getElementById('cartTotal');
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = '<div class="cart-empty">Your cart is empty.</div>';
+        totalSpan.textContent = '৳0';
+        return;
+      }
+      let html = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const price = item.price || 0;
+        const subtotal = price * item.qty;
+        total += subtotal;
+        html += `
+          <div class="cart-item">
+            <img src="${item.image || ''}" alt="${item.name}" onerror="this.style.display='none'">
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">৳${price || '—'}</div>
+              <div class="cart-item-qty">
+                <button onclick="changeQty(${index}, -1)">−</button>
+                <span>${item.qty}</span>
+                <button onclick="changeQty(${index}, 1)">+</button>
+              </div>
+            </div>
+            <button class="cart-item-remove" onclick="removeItem(${index})">✕</button>
+          </div>
+        `;
+      });
+      itemsContainer.innerHTML = html;
+      totalSpan.textContent = `৳${total}`;
+    }
+
+    function changeQty(index, delta) {
+      if (cart[index]) {
+        cart[index].qty = Math.max(0, cart[index].qty + delta);
+        if (cart[index].qty === 0) {
+          cart.splice(index, 1);
+        }
+        saveCart();
+      }
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+    }
+
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ===== MOBILE MENU =====
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuClose = document.getElementById('menuClose');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    menuToggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    // ===== CART TOGGLE =====
+    document.getElementById('cartToggle').addEventListener('click', () => {
+      document.getElementById('cartDrawer').classList.toggle('open');
+    });
+    document.getElementById('cartClose').addEventListener('click', () => {
+      document.getElementById('cartDrawer').classList.remove('open');
+    });
+
+    // ===== SEARCH OVERLAY =====
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    document.getElementById('searchToggle').addEventListener('click', () => {
+      searchOverlay.classList.toggle('active');
+      if (searchOverlay.classList.contains('active')) {
+        setTimeout(() => searchInput.focus(), 100);
+      }
+    });
+    document.getElementById('searchClose').addEventListener('click', () => {
+      searchOverlay.classList.remove('active');
+      searchResults.innerHTML = '';
+    });
+
+    const ingredientsProducts = [
+      { id: 1, name: "Narkel Naru", category: "Sweets & Snacks" },
+      { id: 2, name: "Bengali Pickle", category: "Pickles & Achar" },
+      { id: 3, name: "Turmeric Powder", category: "Spices & Masalas" }
+    ];
+
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      if (!query) { searchResults.innerHTML = ''; return; }
+      const filtered = ingredientsProducts.filter(p =>
+        p.name.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+      );
+      if (filtered.length === 0) {
+        searchResults.innerHTML = '<div style="padding:12px; color:var(--grey);">No products found.</div>';
+        return;
+      }
+      searchResults.innerHTML = filtered.map(p => `
+        <div class="result-item">
+          <span>${p.name}</span>
+          <span style="color:var(--grey);font-size:13px;">${p.category}</span>
+        </div>
+      `).join('');
+    });
+
+    // ===== REVEAL ON SCROLL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.ingredients-hero, .ingredients-section, .ingredients-closing, .no-preservatives').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+
+    // ===== INIT =====
+    updateCartUI();
+
+    document.addEventListener('click', function(e) {
+      const drawer = document.getElementById('cartDrawer');
+      if (drawer.classList.contains('open') && !drawer.contains(e.target) && e.target.closest('#cartToggle') === null) {
+        drawer.classList.remove('open');
+      }
+    });
+
+    console.log('PURE SPICES — Ingredients page');
+  </script>
+</body>
+</html>
