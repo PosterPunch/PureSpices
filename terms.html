@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Terms &amp; Conditions — Pure Spices</title>
+  <meta name="description" content="Terms and Conditions for Pure Spices — please review these terms before placing an order.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== GLOBAL DESIGN SYSTEM ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ivory: #F5F1E8;
+      --cream: #EDE7DA;
+      --forest: #173B2C;
+      --forest-muted: #28513F;
+      --terracotta: #A94E35;
+      --charcoal: #171815;
+      --grey: #77736B;
+      --border-subtle: rgba(23, 59, 44, 0.18);
+      --font-serif: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Manrope', 'Inter', 'Helvetica Neue', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--charcoal);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: var(--font-sans);
+      border: none;
+      background: none;
+    }
+
+    .container {
+      width: min(100% - 2rem, 1280px);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* ===== ANNOUNCEMENT BAR ===== */
+    .announcement {
+      background: var(--forest);
+      color: var(--ivory);
+      text-align: center;
+      padding: 8px 16px;
+      font-size: clamp(9px, 0.65vw, 12px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-family: var(--font-sans);
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--ivory);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .header.scrolled {
+      background: rgba(245, 241, 232, 0.95);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      padding: 0 16px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .header-logo a {
+      display: flex;
+      align-items: center;
+    }
+    .header-logo img {
+      height: clamp(40px, 4.8vw, 68px);
+      width: auto;
+      display: block;
+      filter: brightness(0) saturate(100%) invert(22%) sepia(18%) saturate(1320%) hue-rotate(100deg) brightness(94%) contrast(92%);
+    }
+    .header-nav {
+      display: none;
+    }
+    .header-nav a {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      color: var(--charcoal);
+      padding: 0 18px;
+      transition: color 0.2s;
+      text-transform: uppercase;
+    }
+    .header-nav a:hover {
+      color: var(--forest);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .header-actions button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--charcoal);
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      position: relative;
+    }
+    .header-actions button:hover {
+      color: var(--forest);
+    }
+    .header-actions a {
+      display: flex;
+      align-items: center;
+      color: var(--charcoal);
+      transition: color 0.2s;
+    }
+    .header-actions a:hover {
+      color: var(--forest);
+    }
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -6px;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 600;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--charcoal);
+      transition: 0.3s;
+    }
+
+    @media (min-width: 769px) {
+      .header-nav {
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+      .hamburger {
+        display: none;
+      }
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 360px;
+      height: 100vh;
+      background: var(--forest);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      padding: 80px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow-y: auto;
+    }
+    .mobile-menu.open {
+      right: 0;
+    }
+    .mobile-menu a {
+      color: var(--ivory);
+      font-size: 17px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(245, 241, 232, 0.08);
+      transition: opacity 0.2s;
+    }
+    .mobile-menu a:hover {
+      opacity: 0.7;
+    }
+    .mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--ivory);
+      font-size: 28px;
+    }
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ===== SEARCH OVERLAY ===== */
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(245, 241, 232, 0.97);
+      z-index: 1500;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 80px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .search-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .search-box {
+      width: min(90%, 600px);
+    }
+    .search-box input {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 20px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--forest);
+      outline: none;
+      font-family: var(--font-serif);
+      color: var(--charcoal);
+    }
+    .search-box input::placeholder {
+      color: var(--grey);
+      opacity: 0.6;
+    }
+    .search-results {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .search-results .result-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-results .result-item:hover {
+      background: var(--cream);
+    }
+    .search-close {
+      position: absolute;
+      top: 28px;
+      right: 32px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: var(--charcoal);
+    }
+
+    /* ===== CART DRAWER ===== */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: min(100%, 420px);
+      height: 100vh;
+      background: var(--ivory);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      padding: 24px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.05);
+    }
+    .cart-drawer.open {
+      right: 0;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 18px;
+      font-weight: 500;
+      font-family: var(--font-serif);
+    }
+    .cart-close {
+      font-size: 24px;
+      background: none;
+      border: none;
+    }
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(23, 59, 44, 0.06);
+    }
+    .cart-item img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 2px;
+      background: var(--cream);
+    }
+    .cart-item-info {
+      flex: 1;
+    }
+    .cart-item-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .cart-item-price {
+      font-size: 13px;
+      color: var(--grey);
+    }
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .cart-item-qty button {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      background: transparent;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    .cart-item-qty button:hover {
+      background: var(--forest);
+      color: var(--ivory);
+      border-color: var(--forest);
+    }
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--grey);
+      font-size: 18px;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .cart-item-remove:hover {
+      color: var(--terracotta);
+    }
+    .cart-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 16px;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .cart-checkout {
+      width: 100%;
+      padding: 14px;
+      background: var(--forest);
+      color: var(--ivory);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+      display: block;
+      text-align: center;
+    }
+    .cart-checkout:hover {
+      background: var(--forest-muted);
+    }
+    .cart-empty {
+      text-align: center;
+      color: var(--grey);
+      padding: 40px 0;
+      font-size: 15px;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary {
+      background: var(--forest);
+      color: var(--ivory);
+      padding: 14px 36px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      transition: background 0.25s, transform 0.1s;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn-primary:hover {
+      background: var(--forest-muted);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--forest);
+      padding: 14px 36px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      transition: background 0.25s, border-color 0.25s;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn-secondary:hover {
+      background: var(--cream);
+      border-color: var(--forest);
+    }
+
+    /* ===== PATTERN BACKGROUND ===== */
+    .pattern-bg {
+      position: relative;
+    }
+    .pattern-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/pattern.png');
+      background-size: 30% auto;
+      background-repeat: repeat;
+      background-position: center;
+      opacity: 0.10;
+      pointer-events: none;
+    }
+    .pattern-bg .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== TERMS PAGE SPECIFIC ===== */
+    .terms-hero {
+      padding: 50px 0 30px;
+      text-align: center;
+    }
+    .terms-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 5.5vw, 4.8rem);
+      font-weight: 500;
+      color: var(--forest);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .terms-hero p {
+      font-size: clamp(1rem, 1.1vw, 1.2rem);
+      color: var(--grey);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .terms-hero .last-updated {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--grey);
+      letter-spacing: 0.04em;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 12px;
+    }
+
+    .terms-content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px 0 60px;
+    }
+    .terms-content .terms-section {
+      margin-bottom: 32px;
+    }
+    .terms-content .terms-section:last-child {
+      margin-bottom: 0;
+    }
+    .terms-content .terms-section h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      font-weight: 500;
+      color: var(--forest);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .terms-content .terms-section p {
+      font-size: clamp(0.95rem, 1vw, 1.05rem);
+      color: var(--charcoal);
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+    .terms-content .terms-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0 8px 0;
+    }
+    .terms-content .terms-section ul li {
+      padding: 3px 0 3px 22px;
+      position: relative;
+      font-size: clamp(0.95rem, 1vw, 1.05rem);
+      color: var(--charcoal);
+      line-height: 1.7;
+    }
+    .terms-content .terms-section ul li::before {
+      content: '•';
+      position: absolute;
+      left: 4px;
+      color: var(--forest);
+      font-weight: 600;
+    }
+    .terms-content .terms-section a {
+      color: var(--forest);
+      font-weight: 500;
+      border-bottom: 1px solid var(--border-subtle);
+      transition: border-color 0.2s;
+      word-break: break-word;
+    }
+    .terms-content .terms-section a:hover {
+      border-color: var(--forest);
+    }
+    .terms-content .terms-section .contact-list {
+      margin-top: 6px;
+    }
+    .terms-content .terms-section .contact-list span {
+      display: block;
+      margin-top: 4px;
+    }
+    .terms-content .terms-section .placeholder-note {
+      font-size: 0.9rem;
+      color: var(--grey);
+      font-style: italic;
+      border-left: 2px solid var(--border-subtle);
+      padding-left: 16px;
+      margin: 6px 0 0 0;
+    }
+    .terms-content .terms-section .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+      margin: 4px 0 8px 0;
+      padding: 0;
+      list-style: none;
+    }
+    .terms-content .terms-section .product-list li {
+      padding: 0;
+      font-size: clamp(0.95rem, 1vw, 1.05rem);
+      color: var(--charcoal);
+      line-height: 1.7;
+    }
+    .terms-content .terms-section .product-list li::before {
+      display: none;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--forest);
+      color: var(--ivory);
+      padding: 48px 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--ivory);
+      opacity: 0.8;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: rgba(245, 241, 232, 0.7);
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: var(--ivory);
+    }
+    .footer-col p {
+      font-size: 14px;
+      color: rgba(245, 241, 232, 0.7);
+      line-height: 1.6;
+    }
+    .footer-brand a {
+      display: inline-block;
+    }
+    .footer-brand img {
+      height: 60px;
+      width: auto;
+      display: block;
+      margin-bottom: 8px;
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+    .footer-brand p {
+      margin-top: 8px;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(245, 241, 232, 0.1);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(245, 241, 232, 0.5);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .terms-hero {
+        padding: 30px 0 20px;
+      }
+      .terms-hero h1 {
+        font-size: clamp(2.6rem, 8vw, 3.6rem);
+      }
+      .terms-content {
+        padding: 12px 0 40px;
+      }
+      .terms-content .terms-section {
+        margin-bottom: 24px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        justify-items: center;
+        text-align: center;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-brand img {
+        height: 48px;
+      }
+      .header-actions {
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .terms-hero h1 {
+        font-size: clamp(2.2rem, 9vw, 3rem);
+      }
+      .terms-content .terms-section h2 {
+        font-size: 1.3rem;
+      }
+      .terms-content .terms-section p,
+      .terms-content .terms-section ul li {
+        font-size: 0.92rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .footer-brand img {
+        height: 44px;
+      }
+      .header-inner {
+        height: 56px;
+      }
+      .header-logo img {
+        height: clamp(32px, 8vw, 44px);
+      }
+      .header-actions {
+        gap: 10px;
+      }
+      .terms-content .terms-section .placeholder-note {
+        padding-left: 12px;
+        font-size: 0.85rem;
+      }
+      .terms-content .terms-section .product-list {
+        gap: 2px 12px;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .footer-grid {
+        justify-items: center;
+        text-align: center;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-col {
+        text-align: center;
+      }
+      .footer-col a {
+        text-align: center;
+      }
+    }
+
+    /* ===== REVEAL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== ANNOUNCEMENT BAR ===== -->
+  <div class="announcement">Bangladesh-wide delivery • Authentic Bengali flavours • Made with care</div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="index.html"><img src="secondary horizontal.png" alt="PURE SPICES"></a>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="our-story.html">Our Story</a>
+        <a href="bengali-tradition.html">Bengali Tradition</a>
+        <a href="ingredients.html">Ingredients</a>
+      </nav>
+      <div class="header-actions">
+        <button id="searchToggle" aria-label="Search">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <a href="account.html" aria-label="Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button id="cartToggle" aria-label="Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="menuToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="menuClose">✕</button>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="bengali-tradition.html">Bengali Tradition</a>
+    <a href="ingredients.html">Ingredients</a>
+    <a href="faq.html">FAQ</a>
+    <a href="delivery.html">Delivery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- ===== SEARCH OVERLAY ===== -->
+  <div class="search-overlay" id="searchOverlay">
+    <button class="search-close" id="searchClose">✕</button>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search products..." autofocus>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <span>Your Cart</span>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Your cart is empty.</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Subtotal</span>
+        <span id="cartTotal">৳0</span>
+      </div>
+      <a href="checkout.html" class="cart-checkout">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <!-- ===== TERMS HERO ===== -->
+  <section class="terms-hero container">
+    <h1>TERMS &amp;<br>CONDITIONS</h1>
+    <p>Please review these terms before placing an order with Pure Spices.</p>
+    <span class="last-updated">Last Updated: August 26, 2026</span>
+  </section>
+
+  <!-- ===== TERMS CONTENT (with pattern) ===== -->
+  <section class="pattern-bg" style="padding: 10px 0 20px;">
+    <div class="container terms-content">
+
+      <!-- 1. ABOUT PURE SPICES -->
+      <div class="terms-section">
+        <h2>1. About Pure Spices</h2>
+        <p>Pure Spices is a Bangladeshi food brand based in Shailkupa, Bangladesh, offering traditional foods and ingredients made with carefully selected, high-quality ingredients.</p>
+      </div>
+
+      <!-- 2. ORDERS -->
+      <div class="terms-section">
+        <h2>2. Orders</h2>
+        <p>Orders are currently placed through Facebook Messenger or WhatsApp. An order is not considered fully confirmed until the relevant order details have been agreed with the customer.</p>
+        <p class="placeholder-note">Please ensure all details provided are accurate to avoid delays.</p>
+      </div>
+
+      <!-- 3. PRODUCTS -->
+      <div class="terms-section">
+        <h2>3. Products</h2>
+        <p>Pure Spices offers a range of traditional Bengali foods and ingredients, including:</p>
+        <ul class="product-list" style="display:flex; flex-wrap:wrap; gap:4px 16px; list-style:none; padding:0; margin:4px 0 8px 0;">
+          <li style="padding:0;">Narkel Naru</li>
+          <li style="padding:0;">Murir Moa</li>
+          <li style="padding:0;">Turmeric</li>
+          <li style="padding:0;">Chili Powder</li>
+          <li style="padding:0;">Coriander Powder</li>
+          <li style="padding:0;">Beresta</li>
+          <li style="padding:0;">Pickles</li>
+          <li style="padding:0;">Biriyani Masala</li>
+          <li style="padding:0;">Mustard Oil</li>
+          <li style="padding:0;">Dried Red Chili Peppers</li>
+          <li style="padding:0;">Mustard Seeds</li>
+          <li style="padding:0;">Akher Gur</li>
+          <li style="padding:0;">Narikel Gur</li>
+          <li style="padding:0;">Chili Flakes</li>
+        </ul>
+        <p>Product availability may change. Images should be understood as representative and actual products may have natural variations.</p>
+      </div>
+
+      <!-- 4. PRICING -->
+      <div class="terms-section">
+        <h2>4. Pricing</h2>
+        <p>All website prices are displayed in <strong>৳ BDT</strong> (Bangladeshi Taka). If prices are not yet displayed for a product, customers can confirm pricing when placing an order.</p>
+      </div>
+
+      <!-- 5. PAYMENT -->
+      <div class="terms-section">
+        <h2>5. Payment</h2>
+        <p>Accepted payment methods are:</p>
+        <ul>
+          <li>bKash</li>
+          <li>Nagad</li>
+          <li>Bank Transfer</li>
+        </ul>
+        <p>Payment instructions can be provided during the ordering process.</p>
+        <p class="placeholder-note">Please confirm payment details directly with Pure Spices.</p>
+      </div>
+
+      <!-- 6. DELIVERY -->
+      <div class="terms-section">
+        <h2>6. Delivery</h2>
+        <p>Pure Spices currently delivers across Bangladesh. Typical delivery is within 2 days, though customers should allow up to 4 days depending on location and circumstances.</p>
+        <p>Delivery fees are paid by the customer and depend on order weight and delivery location.</p>
+      </div>
+
+      <!-- 7. PRODUCT QUALITY AND STORAGE -->
+      <div class="terms-section">
+        <h2>7. Product Quality and Storage</h2>
+        <p>Pure Spices products are made in-house using carefully selected, top-quality organic ingredients. Our products are made without preservatives.</p>
+        <p>Storage instructions are provided on the packaging for each product. When stored appropriately, products maintain their best quality for up to 1 year without freezing and up to 3 years when kept in a freezer.</p>
+      </div>
+
+      <!-- 8. CUSTOM ORDERS -->
+      <div class="terms-section">
+        <h2>8. Custom Orders</h2>
+        <p>Customers may request customisation of their order. Customisation depends on the product and the specific request and must be discussed directly with Pure Spices.</p>
+      </div>
+
+      <!-- 9. DAMAGED OR INCORRECT ORDERS -->
+      <div class="terms-section">
+        <h2>9. Damaged or Incorrect Orders</h2>
+        <p>If an item arrives damaged or the wrong item is delivered, the customer may be eligible for a refund. Customers should contact Pure Spices as soon as possible through WhatsApp or Facebook Messenger so the issue can be reviewed.</p>
+      </div>
+
+      <!-- 10. REFUNDS -->
+      <div class="terms-section">
+        <h2>10. Refunds</h2>
+        <p>Refunds are not automatically available for every situation. A refund request must have a valid reason. Damaged or incorrect items are eligible for a refund subject to review.</p>
+        <p class="placeholder-note">Please contact us directly to discuss any refund request.</p>
+      </div>
+
+      <!-- 11. CUSTOMER RESPONSIBILITIES -->
+      <div class="terms-section">
+        <h2>11. Customer Responsibilities</h2>
+        <p>Customers are responsible for providing accurate information, including:</p>
+        <ul>
+          <li>Name</li>
+          <li>Phone number</li>
+          <li>Delivery information</li>
+          <li>Order details</li>
+        </ul>
+        <p>Incorrect information may affect delivery.</p>
+      </div>
+
+      <!-- 12. WEBSITE CONTENT -->
+      <div class="terms-section">
+        <h2>12. Website Content</h2>
+        <p>Pure Spices aims to keep website information accurate, but product availability, descriptions, images and other information may change without notice.</p>
+      </div>
+
+      <!-- 13. WEBSITE USE -->
+      <div class="terms-section">
+        <h2>13. Website Use</h2>
+        <p>Users should use the website lawfully and responsibly. Do not attempt to interfere with the website or misuse its content.</p>
+      </div>
+
+      <!-- 14. INTELLECTUAL PROPERTY -->
+      <div class="terms-section">
+        <h2>14. Intellectual Property</h2>
+        <p>The Pure Spices name, logo, branding, photography, graphics, written content and other original materials belong to Pure Spices or their respective owners and should not be reproduced without permission.</p>
+      </div>
+
+      <!-- 15. THIRD-PARTY SERVICES -->
+      <div class="terms-section">
+        <h2>15. Third-Party Services</h2>
+        <p>The website may link to or use third-party services such as:</p>
+        <ul>
+          <li><a href="https://www.whatsapp.com" target="_blank">WhatsApp</a></li>
+          <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://formspree.io" target="_blank">Formspree</a></li>
+        </ul>
+        <p>These services have their own terms and policies.</p>
+      </div>
+
+      <!-- 16. CHANGES TO TERMS -->
+      <div class="terms-section">
+        <h2>16. Changes to Terms</h2>
+        <p>Pure Spices may update these Terms &amp; Conditions when necessary. The latest version will be published on this page.</p>
+      </div>
+
+      <!-- 17. CONTACT -->
+      <div class="terms-section">
+        <h2>17. Contact Us</h2>
+        <p>If you have any questions about these Terms &amp; Conditions, you can contact us through:</p>
+        <div class="contact-list">
+          <span>WhatsApp: <a href="https://wa.me/8801912136746" target="_blank">+880 1912-136746</a></span>
+          <span>Facebook: <a href="https://www.facebook.com/purespicesshop/" target="_blank">@purespicesshop</a></span>
+        </div>
+      </div>
+
+      <div style="margin-top:32px; padding-top:20px; border-top:1px solid var(--border-subtle); text-align:center; font-size:0.9rem; color:var(--grey);">
+        These Terms &amp; Conditions are provided for informational purposes and do not constitute legal advice.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html"><img src="secondary horizontal.png" alt="PURE SPICES"></a>
+          <p>Authentic Bengali flavours, made with care in Shailkupa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">All Products</a>
+          <a href="shop.html">Spices & Masalas</a>
+          <a href="shop.html">Sweets & Snacks</a>
+          <a href="shop.html">Pickles</a>
+          <a href="shop.html">Traditional Essentials</a>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <a href="our-story.html">Our Story</a>
+          <a href="bengali-tradition.html">Bengali Tradition</a>
+          <a href="ingredients.html">Ingredients</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="faq.html">FAQ</a>
+          <a href="delivery.html">Delivery</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Conditions</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>Shailkupa, Bangladesh</p>
+          <p style="margin-top:4px;">WhatsApp: <a href="https://wa.me/8801912136746" target="_blank" style="color:rgba(245,241,232,0.7);">+880 1912-136746</a></p>
+          <p>Email: <a href="mailto:hello.purespices@gmail.com" style="color:rgba(245,241,232,0.7);">hello@purespices.com</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© Pure Spices — All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== CART =====
+    let cart = JSON.parse(localStorage.getItem('pureSpicesCart')) || [];
+
+    function saveCart() {
+      localStorage.setItem('pureSpicesCart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cartCount').textContent = count;
+      const itemsContainer = document.getElementById('cartItems');
+      const totalSpan = document.getElementById('cartTotal');
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = '<div class="cart-empty">Your cart is empty.</div>';
+        totalSpan.textContent = '৳0';
+        return;
+      }
+      let html = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const price = item.price || 0;
+        const subtotal = price * item.qty;
+        total += subtotal;
+        html += `
+          <div class="cart-item">
+            <img src="${item.image || ''}" alt="${item.name}" onerror="this.style.display='none'">
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">৳${price || '—'}</div>
+              <div class="cart-item-qty">
+                <button onclick="changeQty(${index}, -1)">−</button>
+                <span>${item.qty}</span>
+                <button onclick="changeQty(${index}, 1)">+</button>
+              </div>
+            </div>
+            <button class="cart-item-remove" onclick="removeItem(${index})">✕</button>
+          </div>
+        `;
+      });
+      itemsContainer.innerHTML = html;
+      totalSpan.textContent = `৳${total}`;
+    }
+
+    function changeQty(index, delta) {
+      if (cart[index]) {
+        cart[index].qty = Math.max(0, cart[index].qty + delta);
+        if (cart[index].qty === 0) {
+          cart.splice(index, 1);
+        }
+        saveCart();
+      }
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+    }
+
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ===== MOBILE MENU =====
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuClose = document.getElementById('menuClose');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    menuToggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    // ===== CART TOGGLE =====
+    document.getElementById('cartToggle').addEventListener('click', () => {
+      document.getElementById('cartDrawer').classList.toggle('open');
+    });
+    document.getElementById('cartClose').addEventListener('click', () => {
+      document.getElementById('cartDrawer').classList.remove('open');
+    });
+
+    // ===== SEARCH OVERLAY =====
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    document.getElementById('searchToggle').addEventListener('click', () => {
+      searchOverlay.classList.toggle('active');
+      if (searchOverlay.classList.contains('active')) {
+        setTimeout(() => searchInput.focus(), 100);
+      }
+    });
+    document.getElementById('searchClose').addEventListener('click', () => {
+      searchOverlay.classList.remove('active');
+      searchResults.innerHTML = '';
+    });
+
+    const termsProducts = [
+      { id: 1, name: "Narkel Naru", category: "Sweets & Snacks" },
+      { id: 2, name: "Bengali Pickle", category: "Pickles & Achar" },
+      { id: 3, name: "Turmeric Powder", category: "Spices & Masalas" }
+    ];
+
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      if (!query) { searchResults.innerHTML = ''; return; }
+      const filtered = termsProducts.filter(p =>
+        p.name.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+      );
+      if (filtered.length === 0) {
+        searchResults.innerHTML = '<div style="padding:12px; color:var(--grey);">No products found.</div>';
+        return;
+      }
+      searchResults.innerHTML = filtered.map(p => `
+        <div class="result-item">
+          <span>${p.name}</span>
+          <span style="color:var(--grey);font-size:13px;">${p.category}</span>
+        </div>
+      `).join('');
+    });
+
+    // ===== REVEAL ON SCROLL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.terms-hero, .terms-content').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+
+    // ===== INIT =====
+    updateCartUI();
+
+    document.addEventListener('click', function(e) {
+      const drawer = document.getElementById('cartDrawer');
+      if (drawer.classList.contains('open') && !drawer.contains(e.target) && e.target.closest('#cartToggle') === null) {
+        drawer.classList.remove('open');
+      }
+    });
+
+    console.log('PURE SPICES — Terms & Conditions page');
+  </script>
+</body>
+</html>

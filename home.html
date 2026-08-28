@@ -1096,10 +1096,6 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
       }
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 24px;
-      }
       .carousel-slide {
         flex: 0 0 calc(50% - 10px);
       }
@@ -1108,6 +1104,16 @@
       }
       .header-actions {
         gap: 14px;
+      }
+      /* Centre footer on tablet */
+      .footer-grid {
+        justify-items: center;
+        text-align: center;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
     }
 
@@ -1144,10 +1150,6 @@
         width: 56px;
         height: 56px;
       }
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
       .review-grid {
         grid-template-columns: 1fr;
       }
@@ -1161,6 +1163,24 @@
       .header-actions {
         gap: 10px;
       }
+      /* Centre footer on mobile */
+      .footer-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 24px;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-col {
+        text-align: center;
+      }
+      .footer-col a {
+        text-align: center;
+      }
     }
 
     @media (min-width: 769px) and (max-width: 1024px) {
@@ -1169,6 +1189,21 @@
       }
       .hero {
         min-height: 50vh;
+      }
+      .footer-grid {
+        justify-items: center;
+        text-align: center;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-col {
+        text-align: center;
+      }
+      .footer-col a {
+        text-align: center;
       }
     }
 
@@ -1573,7 +1608,7 @@
           <h4>Contact</h4>
           <p>Shailkupa, Bangladesh</p>
           <p style="margin-top:4px;">WhatsApp: <a href="https://wa.me/8801912136746" target="_blank" style="color:rgba(245,241,232,0.7);">+880 1912-136746</a></p>
-          <p>Email: <a href="mailto:hello@purespices.com" style="color:rgba(245,241,232,0.7);">hello@purespices.com</a></p>
+          <p>Email: <a href="mailto:hello.purespices@gmail.com" style="color:rgba(245,241,232,0.7);">hello@purespices.com</a></p>
         </div>
       </div>
       <div class="footer-bottom">© Pure Spices — All rights reserved.</div>
